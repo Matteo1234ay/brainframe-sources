@@ -16,6 +16,11 @@ const base = {
 
 describe('video data validation', () => {
   it('accepts valid records', () => expect(parseVideos([base])).toHaveLength(1));
+  it('accepts a video with no external sources', () => {
+    const parsed = parseVideos([{ ...base, claims: [] }]);
+    expect(parsed).toHaveLength(1);
+    expect(parsed[0].claims).toEqual([]);
+  });
   it('rejects unknown categories', () => expect(() => parseVideos([{ ...base, category: 'marketing' }])).toThrow(/category/i));
   it('rejects duplicate slugs', () => expect(() => parseVideos([base, base])).toThrow(/duplicate slug/i));
   it('sorts claims by timestamp', () => expect(sortClaimsByTime(base.claims).map((claim) => claim.time)).toEqual(['00:42', '02:15']));
