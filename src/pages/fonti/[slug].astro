@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import YouTubeThumbnail from '../../components/YouTubeThumbnail.astro';
-import { CATEGORIES, getAllVideos, type VideoRecord } from '../../lib/videos';
+import { CATEGORIES, getAllVideos, NO_EXTERNAL_SOURCES_MESSAGE, type VideoRecord } from '../../lib/videos';
 
 export function getStaticPaths() {
   return getAllVideos().map((video) => ({ params: { slug: video.slug }, props: { video } }));
@@ -24,26 +24,32 @@ const category = CATEGORIES.find((item) => item.id === video.category)!;
       {video.description && <p class="source-description">{video.description}</p>}
     </header>
 
-    <ol class="source-timeline" aria-label="Fonti usate nel video">
-      {video.claims.map((claim) => (
-        <li class="source-item">
-          <div class="source-time">{claim.time}</div>
-          <div class="source-content">
-            <h2>{claim.claim}</h2>
-            {claim.note && <p class="source-note">{claim.note}</p>}
-            <div class="source-list">
-              {claim.sources.map((source) => (
-                <a class="source-link" href={source.url} target="_blank" rel="external noopener">
-                  <span>{source.title}</span>
-                  {source.author && <small>{source.author}</small>}
-                  <b aria-hidden="true">↗</b>
-                </a>
-              ))}
+    {video.claims.length > 0 ? (
+      <ol class="source-timeline" aria-label="Fonti usate nel video">
+        {video.claims.map((claim) => (
+          <li class="source-item">
+            <div class="source-time">{claim.time}</div>
+            <div class="source-content">
+              <h2>{claim.claim}</h2>
+              {claim.note && <p class="source-note">{claim.note}</p>}
+              <div class="source-list">
+                {claim.sources.map((source) => (
+                  <a class="source-link" href={source.url} target="_blank" rel="external noopener">
+                    <span>{source.title}</span>
+                    {source.author && <small>{source.author}</small>}
+                    <b aria-hidden="true">↗</b>
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
-        </li>
-      ))}
-    </ol>
+          </li>
+        ))}
+      </ol>
+    ) : (
+      <section class="source-empty" aria-label="Fonti usate nel video">
+        <p>{NO_EXTERNAL_SOURCES_MESSAGE}</p>
+      </section>
+    )}
 
     {(video.corrections?.length ?? 0) > 0 && (
       <section class="corrections" aria-labelledby="corrections-title">
@@ -55,6 +61,6 @@ const category = CATEGORIES.find((item) => item.id === video.category)!;
 </BaseLayout>
 
 <style>
-  .source-page{background:#fff;color:var(--bf-ink)}.source-shell{width:min(calc(100% - 40px),980px);margin-inline:auto;padding:calc(var(--header) + 72px) 0 120px}.source-category,.source-time{color:var(--bf-blue);font-family:var(--editorial);text-transform:uppercase;letter-spacing:.09em}.source-header h1{margin:16px 0 22px;color:var(--bf-blue);font-family:var(--display);font-size:clamp(4rem,9vw,7.5rem);line-height:.88;overflow-wrap:anywhere}:global(.source-header .source-thumbnail){width:min(100%,820px);margin:30px 0 24px}.source-meta{display:flex;flex-wrap:wrap;gap:16px 28px;font-family:var(--editorial)}.source-meta a{color:var(--bf-blue)}.source-description{max-width:720px;margin-top:32px;color:var(--bf-muted);font-size:1.08rem}.source-timeline{list-style:none;padding:0;margin:80px 0 0}.source-item{display:grid;grid-template-columns:110px minmax(0,1fr);gap:28px;padding:36px 0;border-top:1px solid var(--bf-line)}.source-content h2{margin-top:0;font-family:var(--editorial);font-weight:500;font-size:clamp(1.5rem,2.5vw,2rem);overflow-wrap:anywhere}.source-note{color:var(--bf-muted)}.source-list{margin-top:24px}.source-link{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:16px 0;border-top:1px solid var(--bf-line);color:var(--bf-blue);text-decoration:none;overflow-wrap:anywhere}.source-link small{grid-column:1;color:var(--bf-muted)}.source-link b{grid-row:1/3;grid-column:2;align-self:center;font-weight:400}.corrections{margin-top:72px;padding-top:28px;border-top:2px solid var(--bf-blue)}.corrections h2{color:var(--bf-blue);font-family:var(--editorial)}
+  .source-page{background:#fff;color:var(--bf-ink)}.source-shell{width:min(calc(100% - 40px),980px);margin-inline:auto;padding:calc(var(--header) + 72px) 0 120px}.source-category,.source-time{color:var(--bf-blue);font-family:var(--editorial);text-transform:uppercase;letter-spacing:.09em}.source-header h1{margin:16px 0 22px;color:var(--bf-blue);font-family:var(--display);font-size:clamp(4rem,9vw,7.5rem);line-height:.88;overflow-wrap:anywhere}:global(.source-header .source-thumbnail){width:min(100%,820px);margin:30px 0 24px}.source-meta{display:flex;flex-wrap:wrap;gap:16px 28px;font-family:var(--editorial)}.source-meta a{color:var(--bf-blue)}.source-description{max-width:720px;margin-top:32px;color:var(--bf-muted);font-size:1.08rem}.source-timeline{list-style:none;padding:0;margin:80px 0 0}.source-empty{margin-top:80px;padding:30px 0;border-top:1px solid var(--bf-line);border-bottom:1px solid var(--bf-line)}.source-empty p{margin:0;max-width:720px;font-family:var(--editorial);font-size:clamp(1.35rem,2.5vw,1.9rem);color:var(--bf-blue)}.source-item{display:grid;grid-template-columns:110px minmax(0,1fr);gap:28px;padding:36px 0;border-top:1px solid var(--bf-line)}.source-content h2{margin-top:0;font-family:var(--editorial);font-weight:500;font-size:clamp(1.5rem,2.5vw,2rem);overflow-wrap:anywhere}.source-note{color:var(--bf-muted)}.source-list{margin-top:24px}.source-link{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:16px 0;border-top:1px solid var(--bf-line);color:var(--bf-blue);text-decoration:none;overflow-wrap:anywhere}.source-link small{grid-column:1;color:var(--bf-muted)}.source-link b{grid-row:1/3;grid-column:2;align-self:center;font-weight:400}.corrections{margin-top:72px;padding-top:28px;border-top:2px solid var(--bf-blue)}.corrections h2{color:var(--bf-blue);font-family:var(--editorial)}
   @media(max-width:640px){.source-shell{width:min(calc(100% - 28px),980px);padding-top:calc(var(--header) + 44px)}.source-item{grid-template-columns:1fr;gap:10px}:global(.source-header .source-thumbnail){margin-top:22px}}
 </style>
