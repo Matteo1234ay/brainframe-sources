@@ -115,8 +115,9 @@ function makeContext(options: {
 
 describe('Apps Script publishing orchestration', () => {
   it('fails closed on invalid Sheet data and never calls GitHub', () => {
-    const { ctx, commitVideoFiles_ } = makeContext({ sourceGrid: {} });
-    expect(() => ctx.publishApprovedVideos()).toThrow(/nessuna fonte associata/i);
+    const invalidSource = { ...validSourceRow(), 6: 'javascript:alert(1)' };
+    const { ctx, commitVideoFiles_ } = makeContext({ sourceGrid: { 2: invalidSource } });
+    expect(() => ctx.publishApprovedVideos()).toThrow(/URL fonte non valido/i);
     expect(commitVideoFiles_).not.toHaveBeenCalled();
   });
 
