@@ -10,7 +10,9 @@ const prompts = [
 test('home communicates the four Brainframe perspectives', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Le fonti dietro i nostri video sull’AI.');
-  for (const prompt of prompts) await expect(page.getByText(prompt)).toBeVisible();
+  for (const prompt of prompts) {
+    await expect(page.getByRole('heading', { level: 3, name: prompt })).toBeVisible();
+  }
   await expect(page.locator('[data-hero-path]')).toHaveCount(4);
   await expect(page.locator('[data-hero-lens]')).toHaveCount(4);
   await expect(page.getByRole('link', { name: /Vedi le fonti/i })).toBeVisible();
@@ -34,7 +36,7 @@ test('reduced motion keeps the narrative readable', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   await expect(page.locator('html')).toHaveAttribute('data-reduced-motion', 'true');
-  await expect(page.getByText('Che cosa significa essere intelligenti?')).toBeVisible();
+  await expect(page.getByRole('heading', { level: 3, name: 'Che cosa significa essere intelligenti?' })).toBeVisible();
 });
 
 test('pages do not overflow horizontally', async ({ page }) => {
