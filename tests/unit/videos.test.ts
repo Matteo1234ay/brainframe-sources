@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { parseVideos, sortClaimsByTime } from '../../src/lib/videos';
+import { NO_EXTERNAL_SOURCES_MESSAGE, parseVideos, sortClaimsByTime } from '../../src/lib/videos';
 
 const base = {
   title: 'L’AI è davvero intelligente?',
@@ -20,6 +20,9 @@ describe('video data validation', () => {
     const parsed = parseVideos([{ ...base, claims: [] }]);
     expect(parsed).toHaveLength(1);
     expect(parsed[0].claims).toEqual([]);
+  });
+  it('defines the disclosure shown when a video has no external sources', () => {
+    expect(NO_EXTERNAL_SOURCES_MESSAGE).toBe('Per questo video non sono state utilizzate fonti esterne.');
   });
   it('rejects unknown categories', () => expect(() => parseVideos([{ ...base, category: 'marketing' }])).toThrow(/category/i));
   it('rejects duplicate slugs', () => expect(() => parseVideos([base, base])).toThrow(/duplicate slug/i));
