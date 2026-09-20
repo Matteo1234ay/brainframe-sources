@@ -76,8 +76,8 @@ function makeContext(options: {
     deleteProperty: (key: string) => { delete props[key]; }
   };
 
-  const commitVideoFiles_ = vi.fn(() => options.commitResult ?? ({ sha: 'abc123', url: 'https://github.com/commit/abc123' }));
-  const getDeployState_ = vi.fn(() => options.deployState ?? ({ state: 'pending', runUrl: 'https://github.com/actions/runs/1' }));
+  const commitVideoFiles_ = vi.fn((_files: any[]) => options.commitResult ?? ({ sha: 'abc123', url: 'https://github.com/commit/abc123' }));
+  const getDeployState_ = vi.fn((_sha: string) => options.deployState ?? ({ state: 'pending', runUrl: 'https://github.com/actions/runs/1' }));
   const releaseLock = vi.fn();
   const tryLock = vi.fn(() => true);
   const createdTriggers: any[] = [];
@@ -120,10 +120,10 @@ describe('Apps Script publishing orchestration', () => {
     const { ctx, videoGrid, props, commitVideoFiles_, createdTriggers } = makeContext();
     const result = ctx.publishApprovedVideos();
     expect(commitVideoFiles_).toHaveBeenCalledTimes(1);
-    const files = commitVideoFiles_.mock.calls[0][0];
+    const files = commitVideoFiles_.mock.calls[0]![0];
     expect(files).toHaveLength(1);
-    expect(files[0].path).toBe('src/data/videos/quanto-costa-ai.json');
-    expect(JSON.parse(files[0].content).slug).toBe('quanto-costa-ai');
+    expect(files[0]!.path).toBe('src/data/videos/quanto-costa-ai.json');
+    expect(JSON.parse(files[0]!.content).slug).toBe('quanto-costa-ai');
     expect(videoGrid[5][9]).toBe('IN PUBBLICAZIONE');
     expect(JSON.parse(props.BF_PENDING_PUBLICATION).sha).toBe('abc123');
     expect(createdTriggers).toHaveLength(1);
