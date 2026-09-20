@@ -5,6 +5,8 @@ export type Claim = { time: string; claim: string; note?: string; sources: Sourc
 export type Correction = { date: string; text: string; sourceUrl?: string };
 export type VideoRecord = { title: string; slug: string; category: CategoryId; youtube: string; published: string; description?: string; claims: Claim[]; corrections?: Correction[] };
 
+export const NO_EXTERNAL_SOURCES_MESSAGE = 'Per questo video non sono state utilizzate fonti esterne.';
+
 export const CATEGORIES = [
   { id: 'filosofia', label: 'Filosofia', prompt: 'Che cosa significa essere intelligenti?' },
   { id: 'design', label: 'Design', prompt: 'Come l’interfaccia cambia il modo in cui percepiamo l’AI?' },
@@ -27,7 +29,7 @@ function validateVideo(raw: any): VideoRecord {
   if (!CATEGORY_IDS.includes(raw.category)) throw new Error('category is invalid');
   assertUrl(raw.youtube, 'youtube');
   if (!/^\d{4}-\d{2}-\d{2}$/.test(raw.published)) throw new Error('published must be YYYY-MM-DD');
-  if (!Array.isArray(raw.claims) || raw.claims.length === 0) throw new Error('claims must not be empty');
+  if (!Array.isArray(raw.claims)) throw new Error('claims must be an array');
   for (const claim of raw.claims) {
     if (!TIMESTAMP.test(claim.time)) throw new Error(`invalid timestamp: ${claim.time}`);
     if (typeof claim.claim !== 'string' || !claim.claim.trim()) throw new Error('claim text is required');
