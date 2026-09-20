@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CATEGORIES, getAllVideos } from '../lib/videos';
+import { withBase } from '../lib/paths';
+const videos = getAllVideos();
+---
+<BaseLayout title="Brainframe — Le fonti dietro i nostri video sull’AI" pageClass="home-page">
+  <main id="main-content">
+    <div class="journey" data-journey>
+      <div class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 1200 900" role="presentation" preserveAspectRatio="xMidYMid slice">
+          <g class="journey-paths">
+            <path pathLength="1" data-hero-path="filosofia" d="M-40 170 C240 40 300 360 565 260 S910 20 1240 190" />
+            <path pathLength="1" data-hero-path="design" d="M-20 350 C210 540 370 90 630 330 S980 590 1230 410" />
+            <path pathLength="1" data-hero-path="economia" d="M-30 570 C240 370 420 720 690 510 S970 250 1240 580" />
+            <path pathLength="1" data-hero-path="ingegneria" d="M-20 760 C220 520 410 850 680 690 S960 430 1240 740" />
+          </g>
+          <g class="lens-composition">
+            <ellipse pathLength="1" data-hero-lens="filosofia" cx="525" cy="425" rx="220" ry="125" transform="rotate(-24 525 425)" />
+            <ellipse pathLength="1" data-hero-lens="design" cx="675" cy="425" rx="220" ry="125" transform="rotate(24 675 425)" />
+            <ellipse pathLength="1" data-hero-lens="economia" cx="540" cy="545" rx="220" ry="125" transform="rotate(22 540 545)" />
+            <ellipse pathLength="1" data-hero-lens="ingegneria" cx="660" cy="545" rx="220" ry="125" transform="rotate(-22 660 545)" />
+          </g>
+        </svg>
+      </div>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">BRAINFRAME / SOURCES</p>
+          <h1>Le fonti dietro i nostri video sull’AI.</h1>
+          <p class="disciplines">Filosofia · Design · Economia · Ingegneria informatica</p>
+        </div>
+      </section>
+
+      <section class="perspectives page-shell" aria-labelledby="perspectives-title">
+        <h2 id="perspectives-title" class="section-kicker">Quattro percorsi. Lo stesso fenomeno.</h2>
+        <div class="perspective-list">
+          {CATEGORIES.map((category) => (
+            <article class="perspective" data-perspective={category.id}>
+              <p>{category.label}</p>
+              <h3>{category.prompt}</h3>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="lens-finale page-shell">
+        <span>UNA COMPOSIZIONE, QUATTRO LENTI</span>
+        <p>La tecnologia cambia a seconda della domanda da cui scegli di osservarla.</p>
+      </section>
+    </div>
+
+    <div class="home-editorial">
+      <section class="editorial-section page-shell">
+        <p class="label">Archivio verificabile</p>
+        <h2>Contenuti recenti</h2>
+        <div class="video-grid">
+          {videos.slice(0,6).map((video) => {
+            const category = CATEGORIES.find((c) => c.id === video.category)!;
+            return <article class="video-card">
+              <small>{category.label}</small>
+              <h3>{video.title}</h3>
+              {video.description && <p>{video.description}</p>}
+              <a href={withBase(`/fonti/${video.slug}`)}>Vedi le fonti →</a>
+            </article>
+          })}
+        </div>
+      </section>
+
+      <section class="editorial-section page-shell">
+        <p class="label">Quattro lenti</p>
+        <h2>Esplora per prospettiva</h2>
+        <div class="perspective-grid">
+          {CATEGORIES.map((category) => (
+            <a href={withBase(`/categorie#${category.id}`)}>
+              <span>{category.label}</span>
+              <strong>{category.prompt}</strong>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="editorial-section method page-shell">
+        <p class="label">Metodo Brainframe</p>
+        <h2>Il contenuto parte dalla ricerca.</h2>
+        <p>Per ogni video rendiamo pubbliche le fonti che abbiamo effettivamente usato. Se una fonte o un passaggio richiede una correzione, la documentiamo nella relativa pagina.</p>
+      </section>
+    </div>
+  </main>
+
+  <script is:inline>
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.documentElement.dataset.reducedMotion = String(reduced);
+    const story = document.querySelector('[data-journey]');
+    if (story && !reduced && window.innerWidth > 760) {
+      let scheduled = false;
+      const update = () => {
+        const rect = story.getBoundingClientRect();
+        const travel = Math.max(1, rect.height - window.innerHeight);
+        const progress = Math.min(1, Math.max(0, -rect.top / travel));
+        story.style.setProperty('--journey-progress', progress.toFixed(4));
+        scheduled = false;
+      };
+      const schedule = () => { if (!scheduled) { scheduled = true; requestAnimationFrame(update); } };
+      update(); addEventListener('scroll', schedule, { passive:true }); addEventListener('resize', schedule, { passive:true });
+    }
+  </script>
+</BaseLayout>
+
+<style>
+  .home-page{background:var(--bf-blue);color:#fff}.journey{--journey-progress:0;position:relative;min-height:300vh;background:var(--bf-blue);overflow:clip}
+  .hero-visual{position:sticky;top:0;height:100svh;margin-bottom:-100svh;pointer-events:none;z-index:1}.hero-visual svg{width:100%;height:100%;overflow:visible}.hero-visual path,.hero-visual ellipse{fill:none;stroke:rgba(255,255,255,.76);stroke-width:2;vector-effect:non-scaling-stroke;stroke-linecap:round}
+  .journey-paths path{stroke-dasharray:1;stroke-dashoffset:calc(var(--journey-progress)*.72);opacity:calc(1 - var(--journey-progress)*.8)}.lens-composition ellipse{stroke-dasharray:1;stroke-dashoffset:calc(1 - var(--journey-progress));opacity:calc(.03 + var(--journey-progress))}
+  .hero{min-height:100svh;display:grid;place-items:center;position:relative;z-index:2}.hero-copy{width:min(1020px,calc(100% - 40px));text-align:center}.eyebrow{margin:0 0 26px;font-family:var(--editorial);font-size:.82rem;letter-spacing:.22em}.hero-copy h1{margin:0;font-family:var(--display);font-size:clamp(5rem,11.5vw,10.5rem);line-height:.79;letter-spacing:.005em;text-wrap:balance}.disciplines{margin:30px auto 0;font-family:var(--editorial);text-transform:uppercase;letter-spacing:.08em;font-size:clamp(.82rem,1.5vw,1.05rem)}
+  .perspectives{position:relative;z-index:3;padding-block:16vh 24vh}.section-kicker{max-width:720px;margin:0 auto 14vh;text-align:center;font-family:var(--editorial);font-size:clamp(1.3rem,3vw,2.2rem);font-weight:400}.perspective{max-width:760px;margin-block:19vh}.perspective:nth-child(even){margin-left:auto;text-align:right}.perspective p{margin:0;font-family:var(--display);font-size:clamp(3.5rem,7.5vw,6.5rem);line-height:.88}.perspective h3{margin:.28em 0 0;font-family:var(--editorial);font-weight:400;font-size:clamp(1.45rem,3vw,2.6rem);text-wrap:balance}
+  .lens-finale{position:relative;z-index:3;min-height:52vh;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;padding-bottom:11vh}.lens-finale span{font-family:var(--display);font-size:clamp(2.4rem,5vw,4.5rem);line-height:.9}.lens-finale p{max-width:620px;margin:18px 0 0;font-family:var(--editorial);font-size:clamp(1.15rem,2.3vw,1.8rem)}
+  .home-editorial{position:relative;z-index:4;background:#fff;color:var(--bf-ink);border-radius:38px 38px 0 0}.editorial-section{padding-block:100px;border-bottom:1px solid var(--bf-line)}.label{margin:0 0 12px;color:var(--bf-blue);font-family:var(--editorial);text-transform:uppercase;letter-spacing:.1em}.editorial-section>h2{margin:0 0 46px;color:var(--bf-blue);font-family:var(--display);font-size:clamp(4rem,8vw,7rem);line-height:.88}
+  .perspective-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--bf-line)}.perspective-grid a{min-height:255px;padding:28px 24px;border-bottom:1px solid var(--bf-line);text-decoration:none;display:flex;flex-direction:column;justify-content:space-between}.perspective-grid a:nth-child(odd){border-right:1px solid var(--bf-line)}.perspective-grid span{color:var(--bf-blue);font-family:var(--display);font-size:clamp(3.2rem,6vw,5.2rem);line-height:.9}.perspective-grid strong{max-width:460px;font-family:var(--editorial);font-size:clamp(1.2rem,2.2vw,1.7rem);font-weight:400}.method>p:last-child{max-width:68ch;font-size:1.12rem}
+  @media(max-width:760px){.journey{min-height:auto}.hero-visual{position:absolute;height:100svh;margin:0;opacity:.58}.hero{min-height:88svh}.hero-copy h1{font-size:clamp(4.2rem,19vw,7rem)}.perspectives{padding-block:8vh 5vh}.perspective,.perspective:nth-child(even){margin:7rem 0;text-align:left}.lens-composition ellipse{stroke-dashoffset:0;opacity:.5}.lens-finale{min-height:38vh;padding-bottom:8vh}.home-editorial{border-radius:25px 25px 0 0}.editorial-section{padding-block:74px}.perspective-grid{grid-template-columns:1fr}.perspective-grid a,.perspective-grid a:nth-child(odd){border-right:0;min-height:210px}}
+  @media(prefers-reduced-motion:reduce){.journey{min-height:auto}.hero-visual{position:absolute;height:100svh;margin:0}.journey-paths{opacity:.25}.lens-composition ellipse{stroke-dashoffset:0;opacity:.7}.perspective{margin-block:7rem}}
+</style>
