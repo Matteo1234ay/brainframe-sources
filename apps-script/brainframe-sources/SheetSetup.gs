@@ -13,12 +13,14 @@ function writeHeaders_(sheet, row, headers) {
   sheet.getRange(row, 1, 1, headers.length).setValues([headers]).setFontWeight('bold');
 }
 
-function installBrainframeEditTrigger_() {
+function installBrainframeTriggers_() {
   var spreadsheet = SpreadsheetApp.getActive();
   ScriptApp.getProjectTriggers().forEach(function(trigger) {
-    if (trigger.getHandlerFunction() === 'handleBrainframeEdit') ScriptApp.deleteTrigger(trigger);
+    var handler = trigger.getHandlerFunction();
+    if (handler === 'handleBrainframeEdit' || handler === 'handleBrainframeChange') ScriptApp.deleteTrigger(trigger);
   });
   ScriptApp.newTrigger('handleBrainframeEdit').forSpreadsheet(spreadsheet).onEdit().create();
+  ScriptApp.newTrigger('handleBrainframeChange').forSpreadsheet(spreadsheet).onChange().create();
 }
 
 function protectApprovalColumn_(sheet, rowCount) {
@@ -71,6 +73,6 @@ function setupBrainframeSheet() {
   fonti.autoResizeColumns(1, BF.FONTI_HEADERS.length);
   log.autoResizeColumns(1, BF.LOG_HEADERS.length);
 
-  installBrainframeEditTrigger_();
+  installBrainframeTriggers_();
   onOpen();
 }
