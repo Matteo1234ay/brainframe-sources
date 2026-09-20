@@ -18,10 +18,24 @@ test('home communicates the four Brainframe perspectives', async ({ page }) => {
   await expect(page.getByRole('link', { name: /Vedi le fonti/i })).toBeVisible();
 });
 
-test('hero copy is white on the blue background', async ({ page }) => {
+test('hero copy stays readable over the animated lines', async ({ page }) => {
   await page.goto('/');
   for (const selector of ['.eyebrow', '.hero-copy h1', '.disciplines']) {
     const color = await page.locator(selector).evaluate((element) => getComputedStyle(element).color);
+    expect(color).toBe('rgb(255, 255, 255)');
+  }
+  const panelBackground = await page.locator('.hero-copy').evaluate((element) => getComputedStyle(element).backgroundColor);
+  expect(panelBackground).toBe('rgba(16, 0, 47, 0.92)');
+});
+
+test('scrolling perspective section shows only white questions', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('.perspective > p')).toHaveCount(0);
+  await expect(page.locator('.perspective h3')).toHaveCount(4);
+  for (const prompt of prompts) {
+    const question = page.getByRole('heading', { level: 3, name: prompt });
+    await expect(question).toBeVisible();
+    const color = await question.evaluate((element) => getComputedStyle(element).color);
     expect(color).toBe('rgb(255, 255, 255)');
   }
 });
