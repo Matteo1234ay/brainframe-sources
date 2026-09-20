@@ -17,9 +17,10 @@ The system must preserve the existing editorial rule: only sources actually used
 
 - Team members can edit content in the Sheet.
 - Matteo is the final publisher.
-- A video can be sent to the site only when its status is `APPROVATO`.
+- A video can be sent to the site only when it is editorially ready **and** the protected `Approvato da Matteo` checkbox is enabled.
 - The publish action is triggered by a visible `AGGIORNA BRAINFRAME SOURCES` control in the Sheet.
-- Approval should be protected in the Sheet so only the final publisher can change it.
+- The approval checkbox is protected so only the final publisher can change it.
+- If a published video is edited later, approval is automatically cleared and Matteo must approve the new version again.
 
 ## 3. Google Sheet structure
 
@@ -36,7 +37,7 @@ Columns:
 - `Data pubblicazione`
 - `Descrizione`
 - `Stato editoriale`
-- `Approvato`
+- `Approvato da Matteo`
 - `Stato pubblicazione`
 - `Ultimo aggiornamento`
 - `URL SourcePage`
@@ -97,7 +98,7 @@ Implementation can be exposed through a custom Apps Script menu and, optionally,
 
 On click:
 
-1. Read all rows marked `APPROVATO` or `MODIFICATO - DA RIPUBBLICARE`.
+1. Read only videos whose `Approvato da Matteo` checkbox is enabled and whose editorial state is `APPROVATO` or `MODIFICATO - DA RIPUBBLICARE`.
 2. Validate the video and source rows.
 3. Stop before GitHub if any validation error exists.
 4. Show precise errors such as:
@@ -107,8 +108,11 @@ On click:
 5. If valid, generate the site JSON.
 6. Send the change to GitHub.
 7. Update `Stato pubblicazione` to `IN PUBBLICAZIONE`.
-8. After successful GitHub verification/deploy, update it to `PUBBLICATO` and fill `Ultimo aggiornamento` + `URL SourcePage`.
-9. If verification/deploy fails, set `ERRORE PUBBLICAZIONE` and retain the error reference.
+8. Check the GitHub Actions run associated with the new commit.
+9. If verification + Pages deploy succeed, update the row to `PUBBLICATO` and fill `Ultimo aggiornamento` + `URL SourcePage`.
+10. If verification/deploy fails, set `ERRORE PUBBLICAZIONE` and retain the GitHub error reference.
+
+To keep the action one-click without making the user wait indefinitely, Apps Script may perform a short immediate status poll. If the deploy is still running, a lightweight time-driven Apps Script trigger continues checking and updates the Sheet when GitHub finishes. No manual GitHub check is required.
 
 ## 5. Validation rules
 
@@ -258,8 +262,15 @@ After a successful publish:
 - `Stato pubblicazione` becomes `PUBBLICATO`
 - `Ultimo aggiornamento` is filled
 - `URL SourcePage` is generated automatically
+- `Approvato da Matteo` remains checked for that exact published version
 
-If an already published row is modified, Apps Script should mark it `MODIFICATO - DA RIPUBBLICARE` so the Sheet never falsely appears synchronized with the website.
+If an already published row or one of its associated FONTI rows is modified:
+
+- `Stato editoriale` becomes `MODIFICATO - DA RIPUBBLICARE`
+- `Approvato da Matteo` is automatically unchecked
+- `Stato pubblicazione` communicates that the Sheet contains unpublished changes
+
+This forces a new editorial approval before a modified public page can be updated.
 
 The Sheet is the editorial workspace; the repository remains the production source consumed by the website.
 
@@ -290,7 +301,7 @@ Included:
 - Apps Script validation
 - JSON generation
 - GitHub API publishing
-- publication status feedback
+- publication status feedback and background status synchronization
 - YouTube ID parsing
 - automatic YouTube thumbnails
 - clickable thumbnail and YouTube CTA on cards and SourcePages
@@ -315,10 +326,11 @@ The feature is complete when:
 4. Valid data produces the correct `src/data/videos/<slug>.json` file.
 5. Existing GitHub verification still passes.
 6. A successful publish updates GitHub Pages automatically.
-7. The Sheet receives the resulting public SourcePage URL and publication state.
-8. Homepage cards and SourcePages show the YouTube thumbnail automatically.
-9. Clicking the thumbnail or YouTube CTA opens the correct video.
-10. Existing SourcePages remain backward compatible.
+7. The Sheet receives the resulting public SourcePage URL and publication state without requiring a manual GitHub check.
+8. Editing already published content invalidates the old approval and requires a new approval.
+9. Homepage cards and SourcePages show the YouTube thumbnail automatically.
+10. Clicking the thumbnail or YouTube CTA opens the correct video.
+11. Existing SourcePages remain backward compatible.
 
 ## 15. Open assumption for user approval
 
