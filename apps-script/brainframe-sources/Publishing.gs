@@ -51,6 +51,11 @@ function clearPublicationPolls_() {
   });
 }
 
+function reschedulePublicationPoll_() {
+  clearPublicationPolls_();
+  ScriptApp.newTrigger('pollPendingPublications').timeBased().after(30000).create();
+}
+
 function readPendingPublication_() {
   var raw = PropertiesService.getScriptProperties().getProperty(BF_PENDING_KEY);
   if (!raw) return null;
@@ -126,9 +131,16 @@ function pollPendingPublications() {
     return { state: 'idle' };
   }
 
-  var state = getDeployState_(pending.sha);
+  var state;
+  try {
+    state = getDeployState_(pending.sha);
+  } catch (error) {
+    reschedulePublicationPoll_();
+    throw error;
+  }
+
   if (state.state === 'pending') {
-    ensurePublicationPoll_();
+    reschedulePublicationPoll_();
     return state;
   }
 
@@ -167,6 +179,6 @@ function pollPendingPublications() {
     return state;
   }
 
-  ensurePublicationPoll_();
+  reschedulePublicationPoll_();
   return { state: 'pending' };
 }
