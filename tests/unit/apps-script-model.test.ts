@@ -79,6 +79,13 @@ describe('Apps Script publication model', () => {
     expect(result.models[0].claims.map((claim: any) => claim.time)).toEqual(['00:42', '12:05']);
   });
 
+  it('accepts normal timestamps with one-digit minutes', () => {
+    const ctx = modelContext();
+    const result = plain(ctx.buildPublicationModels_([video()], [source({ 'Timestamp': '1:05' })]));
+    expect(result.errors).toEqual([]);
+    expect(result.models[0].claims[0].time).toBe('1:05');
+  });
+
   it('requires an extractable YouTube video id for Sheet-authored content', () => {
     const ctx = modelContext();
     const result = plain(ctx.buildPublicationModels_([video({ 'YouTube': 'https://www.youtube.com/@BrainframeIT' })], [source()]));
