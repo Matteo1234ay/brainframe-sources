@@ -15,7 +15,7 @@ test('home communicates the four Brainframe perspectives', async ({ page }) => {
   }
   await expect(page.locator('[data-hero-path]')).toHaveCount(4);
   await expect(page.locator('[data-hero-lens]')).toHaveCount(4);
-  await expect(page.getByRole('link', { name: /Vedi le fonti/i })).toBeVisible();
+  await expect(page.getByRole('link', { name: /Vedi le fonti/i }).first()).toBeVisible();
 });
 
 test('hero copy stays readable over the animated lines', async ({ page }) => {
