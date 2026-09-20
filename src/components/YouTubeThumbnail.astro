@@ -1,0 +1,33 @@
+---
+import { getYouTubeThumbnailUrls } from '../lib/youtube';
+import { withBase } from '../lib/paths';
+
+interface Props { youtube: string; title: string; class?: string }
+const { youtube, title, class: className = '' } = Astro.props;
+const media = getYouTubeThumbnailUrls(youtube);
+const placeholder = withBase('/og-default.svg');
+---
+<a class={`youtube-thumbnail ${className}`} href={youtube} target="_blank" rel="external noopener" aria-label={`Guarda ${title} su YouTube`}>
+  <img
+    data-youtube-thumbnail
+    src={media?.maxres ?? placeholder}
+    data-hq={media?.hq ?? ''}
+    data-placeholder={placeholder}
+    alt={`Miniatura YouTube — ${title}`}
+    loading="lazy"
+  />
+</a>
+<script is:inline>
+  document.querySelectorAll('[data-youtube-thumbnail]').forEach((image) => {
+    if (image.dataset.fallbackReady === 'true') return;
+    image.dataset.fallbackReady = 'true';
+    image.addEventListener('error', () => {
+      if (image.dataset.hq && image.src !== image.dataset.hq) image.src = image.dataset.hq;
+      else if (image.dataset.placeholder && image.src !== image.dataset.placeholder) image.src = image.dataset.placeholder;
+    });
+  });
+</script>
+<style>
+  .youtube-thumbnail{display:block;overflow:hidden;border-radius:18px;background:#f3f1f6;aspect-ratio:16/9}
+  .youtube-thumbnail img{display:block;width:100%;height:100%;object-fit:cover}
+</style>
