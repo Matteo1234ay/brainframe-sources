@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import YouTubeThumbnail from '../components/YouTubeThumbnail.astro';
 import { CATEGORIES, getAllVideos } from '../lib/videos';
 import { withBase } from '../lib/paths';
 const videos = getAllVideos();
@@ -57,10 +58,14 @@ const videos = getAllVideos();
           {videos.slice(0,6).map((video) => {
             const category = CATEGORIES.find((c) => c.id === video.category)!;
             return <article class="video-card">
+              <YouTubeThumbnail youtube={video.youtube} title={video.title} class="video-thumbnail" />
               <small>{category.label}</small>
               <h3>{video.title}</h3>
               {video.description && <p>{video.description}</p>}
-              <a href={withBase(`/fonti/${video.slug}`)}>Vedi le fonti →</a>
+              <div class="video-actions">
+                <a href={withBase(`/fonti/${video.slug}`)}>Vedi le fonti →</a>
+                <a href={video.youtube} target="_blank" rel="external noopener">Guarda su YouTube ↗</a>
+              </div>
             </article>
           })}
         </div>
@@ -155,6 +160,7 @@ const videos = getAllVideos();
   .perspectives{position:relative;z-index:3;padding-block:16vh 24vh;color:#fff}.section-kicker{max-width:720px;margin:0 auto 14vh;text-align:center;color:#fff;font-family:var(--editorial);font-size:clamp(1.3rem,3vw,2.2rem);font-weight:400}.perspective{max-width:820px;margin-block:19vh}.perspective:nth-child(even){margin-left:auto;text-align:right}.perspective h3{margin:0;color:#fff;font-family:var(--editorial);font-weight:400;font-size:clamp(2rem,4.6vw,4.3rem);line-height:1.08;text-wrap:balance}
   .lens-finale{position:relative;z-index:3;min-height:52vh;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;padding-bottom:11vh;color:#fff}.lens-finale span{font-family:var(--display);font-size:clamp(2.4rem,5vw,4.5rem);line-height:.9}.lens-finale p{max-width:620px;margin:18px 0 0;font-family:var(--editorial);font-size:clamp(1.15rem,2.3vw,1.8rem)}
   .home-editorial{position:relative;z-index:4;background:#fff;color:var(--bf-ink);border-radius:38px 38px 0 0}.editorial-section{padding-block:100px;border-bottom:1px solid var(--bf-line)}.label{margin:0 0 12px;color:var(--bf-blue);font-family:var(--editorial);text-transform:uppercase;letter-spacing:.1em}.editorial-section>h2{margin:0 0 46px;color:var(--bf-blue);font-family:var(--display);font-size:clamp(4rem,8vw,7rem);line-height:.88}
+  :global(.video-card .video-thumbnail){margin-bottom:22px}.video-actions{display:flex;flex-wrap:wrap;gap:12px 22px;margin-top:18px}.video-actions a{color:var(--bf-blue)}
   .perspective-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--bf-line)}.perspective-grid a{min-height:255px;padding:28px 24px;border-bottom:1px solid var(--bf-line);text-decoration:none;display:flex;flex-direction:column;justify-content:space-between}.perspective-grid a:nth-child(odd){border-right:1px solid var(--bf-line)}.perspective-grid span{color:var(--bf-blue);font-family:var(--display);font-size:clamp(3.2rem,6vw,5.2rem);line-height:.9}.perspective-grid strong{max-width:460px;font-family:var(--editorial);font-size:clamp(1.2rem,2.2vw,1.7rem);font-weight:400}.method>p:last-child{max-width:68ch;font-size:1.12rem}
   @media(max-width:760px){.journey{min-height:auto}.hero-visual{position:absolute;height:100svh;margin:0;opacity:.58}.hero-visual svg{transform:none;transition:none}.journey-paths,.lens-composition{animation:none}.hero{min-height:88svh}.hero-copy{width:min(calc(100% - 28px),680px);padding:28px 18px 30px;border-radius:18px}.hero-copy h1{font-size:clamp(4.2rem,19vw,7rem)}.perspectives{padding-block:8vh 5vh}.perspective,.perspective:nth-child(even){margin:7rem 0;text-align:left}.perspective h3{font-size:clamp(2rem,9vw,3.4rem)}.lens-composition ellipse{stroke-dashoffset:0;opacity:.5}.lens-finale{min-height:38vh;padding-bottom:8vh}.home-editorial{border-radius:25px 25px 0 0}.editorial-section{padding-block:74px}.perspective-grid{grid-template-columns:1fr}.perspective-grid a,.perspective-grid a:nth-child(odd){border-right:0;min-height:210px}}
   @media(prefers-reduced-motion:reduce){.journey{min-height:auto}.hero-visual{position:absolute;height:100svh;margin:0}.hero-visual svg{transform:none;transition:none}.journey-paths,.lens-composition{animation:none}.journey-paths{opacity:.25}.lens-composition ellipse{stroke-dashoffset:0;opacity:.7}.perspective{margin-block:7rem}}

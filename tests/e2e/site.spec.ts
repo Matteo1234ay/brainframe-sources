@@ -46,6 +46,16 @@ test('demo SourcePage exposes the used source and hides empty corrections', asyn
   await expect(page.getByText('00:42')).toBeVisible();
   await expect(page.getByRole('link', { name: /Attention Is All You Need/ })).toHaveAttribute('href', /arxiv\.org/);
   await expect(page.getByRole('heading', { name: /Correzioni/i })).toHaveCount(0);
+  const youtubeLink = page.getByRole('link', { name: /Guarda il video su YouTube/i });
+  await expect(youtubeLink).toHaveAttribute('target', '_blank');
+  await expect(youtubeLink).toHaveAttribute('rel', /noopener/);
+  await expect(page.locator('[data-youtube-thumbnail]')).toBeVisible();
+});
+
+test('video cards expose YouTube media separately from the source link', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('.video-card [data-youtube-thumbnail]').first()).toBeVisible();
+  await expect(page.locator('.video-card a[href*="youtube.com"]').first()).toHaveAttribute('target', '_blank');
 });
 
 test('search finds content by source author', async ({ page }) => {

@@ -18,13 +18,17 @@ npm run build
 
 ## Contenuti
 
-I video vivono in `src/data/videos/*.json`. Ogni file genera automaticamente una SourcePage in `/fonti/<slug>/`.
+Il workflow editoriale normale usa **Google Sheets come mini-CMS**: il team compila i tab `VIDEO` e `FONTI`, Matteo approva, quindi il comando **AGGIORNA BRAINFRAME SOURCES** valida i dati e aggiorna automaticamente il repository. GitHub Actions verifica e pubblica il sito; il foglio mostra `PUBBLICATO` solo dopo il deploy riuscito.
 
-Le descrizioni YouTube possono quindi puntare direttamente alla pagina del relativo video, per esempio `/fonti/demo-sourcepage/`.
+Guida di installazione del publisher: `apps-script/brainframe-sources/README.md`.
+
+Guida editoriale quotidiana: `docs/ADDING-A-VIDEO.md`.
+
+Nel repository, i contenuti pubblicati restano file `src/data/videos/*.json`. Ogni file genera automaticamente una SourcePage in `/fonti/<slug>/`. I JSON sono quindi ancora la sorgente di produzione e possono essere modificati manualmente come procedura di recupero.
+
+Le descrizioni YouTube possono puntare direttamente alla pagina del relativo video, per esempio `/fonti/demo-sourcepage/`.
 
 Le SourcePage devono contenere **solo le fonti realmente usate nel video**, non tutto ciò che è stato consultato durante la ricerca.
-
-Vedi `docs/ADDING-A-VIDEO.md` per la procedura editoriale.
 
 ## GitHub Pages
 
