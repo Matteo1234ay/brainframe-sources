@@ -122,10 +122,12 @@ describe('Apps Script publication model', () => {
     expect(result.errors.join('\n')).toMatch(/slug.*duplicat/i);
   });
 
-  it('rejects an approved video with no sources', () => {
+  it('allows an approved video with no external sources', () => {
     const ctx = modelContext();
     const result = plain(ctx.buildPublicationModels_([video()], []));
-    expect(result.errors.join('\n')).toMatch(/nessuna fonte/i);
+    expect(result.errors).toEqual([]);
+    expect(result.models).toHaveLength(1);
+    expect(result.models[0].claims).toEqual([]);
   });
 
   it('ignores rows that are not both editorially ready and approved by Matteo', () => {
