@@ -45,7 +45,7 @@ function normalizeDate_(value) {
 }
 
 function timestampSeconds_(value) {
-  var match = text_(value).match(/^(\d{2,}):([0-5]\d)$/);
+  var match = text_(value).match(/^(\d+):([0-5]\d)$/);
   if (!match) return null;
   return Number(match[1]) * 60 + Number(match[2]);
 }
