@@ -18,6 +18,14 @@ test('home communicates the four Brainframe perspectives', async ({ page }) => {
   await expect(page.getByRole('link', { name: /Vedi le fonti/i })).toBeVisible();
 });
 
+test('hero copy is white on the blue background', async ({ page }) => {
+  await page.goto('/');
+  for (const selector of ['.eyebrow', '.hero-copy h1', '.disciplines']) {
+    const color = await page.locator(selector).evaluate((element) => getComputedStyle(element).color);
+    expect(color).toBe('rgb(255, 255, 255)');
+  }
+});
+
 test('demo SourcePage exposes the used source and hides empty corrections', async ({ page }) => {
   await page.goto('/fonti/demo-sourcepage/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('DEMO — Come leggiamo una fonte');
