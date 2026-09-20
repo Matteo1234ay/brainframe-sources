@@ -57,6 +57,7 @@ function makeContext(options: {
   sourceGrid?: Grid;
   pending?: string;
   deployState?: any;
+  deployError?: Error;
   commitResult?: any;
   existingPollTrigger?: boolean;
 } = {}) {
@@ -77,7 +78,10 @@ function makeContext(options: {
   };
 
   const commitVideoFiles_ = vi.fn((_files: any[]) => options.commitResult ?? ({ sha: 'abc123', url: 'https://github.com/commit/abc123' }));
-  const getDeployState_ = vi.fn((_sha: string) => options.deployState ?? ({ state: 'pending', runUrl: 'https://github.com/actions/runs/1' }));
+  const getDeployState_ = vi.fn((_sha: string) => {
+    if (options.deployError) throw options.deployError;
+    return options.deployState ?? ({ state: 'pending', runUrl: 'https://github.com/actions/runs/1' });
+  });
   const releaseLock = vi.fn();
   const tryLock = vi.fn(() => true);
   const createdTriggers: any[] = [];
@@ -143,6 +147,33 @@ describe('Apps Script publishing orchestration', () => {
     const result = ctx.pollPendingPublications();
     expect(result.state).toBe('pending');
     expect(props.BF_PENDING_PUBLICATION).toBeTruthy();
+    expect(createdTriggers).toHaveLength(1);
+  });
+
+  it('replaces the one-time poll trigger when a poll runs but deploy is still pending', () => {
+    const pending = JSON.stringify({ sha: 'abc123', rows: [{ row: 5, slug: 'quanto-costa-ai' }] });
+    const { ctx, props, createdTriggers, deleteTrigger } = makeContext({
+      pending,
+      deployState: { state: 'pending' },
+      existingPollTrigger: true
+    });
+    const result = ctx.pollPendingPublications();
+    expect(result.state).toBe('pending');
+    expect(props.BF_PENDING_PUBLICATION).toBeTruthy();
+    expect(deleteTrigger).toHaveBeenCalledTimes(1);
+    expect(createdTriggers).toHaveLength(1);
+  });
+
+  it('reschedules polling after a transient GitHub API error', () => {
+    const pending = JSON.stringify({ sha: 'abc123', rows: [{ row: 5, slug: 'quanto-costa-ai' }] });
+    const { ctx, props, createdTriggers, deleteTrigger } = makeContext({
+      pending,
+      deployError: new Error('temporary GitHub error'),
+      existingPollTrigger: true
+    });
+    expect(() => ctx.pollPendingPublications()).toThrow(/temporary GitHub error/i);
+    expect(props.BF_PENDING_PUBLICATION).toBeTruthy();
+    expect(deleteTrigger).toHaveBeenCalledTimes(1);
     expect(createdTriggers).toHaveLength(1);
   });
 
