@@ -9,7 +9,7 @@ function makeSheet(name: string, grid: Grid) {
     getLastRow: () => Math.max(0, ...Object.keys(grid).map(Number)),
     getRange: (row: number, col: number, numRows = 1, numCols = 1) => ({
       getValue: () => grid[row]?.[col] ?? '',
-      setValue: (value: any) => { grid[row] ||= {}; grid[row][col] = value; return this; },
+      setValue: (value: any) => { grid[row] ||= {}; grid[row][col] = value; },
       getValues: () => Array.from({ length: numRows }, (_, r) => Array.from({ length: numCols }, (_, c) => grid[row + r]?.[col + c] ?? '')),
       setValues: (values: any[][]) => {
         values.forEach((valuesRow, r) => valuesRow.forEach((value, c) => {
