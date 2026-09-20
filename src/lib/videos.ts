@@ -1,3 +1,5 @@
+import { isYouTubeUrl } from './youtube';
+
 export const CATEGORY_IDS = ['filosofia', 'design', 'economia', 'ingegneria'] as const;
 export type CategoryId = (typeof CATEGORY_IDS)[number];
 export type Source = { title: string; author?: string; url: string };
@@ -26,6 +28,7 @@ function validateVideo(raw: any): VideoRecord {
   if (typeof raw.slug !== 'string' || !/^[a-z0-9-]+$/.test(raw.slug)) throw new Error('slug is invalid');
   if (!CATEGORY_IDS.includes(raw.category)) throw new Error('category is invalid');
   assertUrl(raw.youtube, 'youtube');
+  if (!isYouTubeUrl(raw.youtube)) throw new Error('youtube must be a YouTube URL');
   if (!/^\d{4}-\d{2}-\d{2}$/.test(raw.published)) throw new Error('published must be YYYY-MM-DD');
   if (!Array.isArray(raw.claims) || raw.claims.length === 0) throw new Error('claims must not be empty');
   for (const claim of raw.claims) {
