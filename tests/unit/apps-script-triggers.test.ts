@@ -83,6 +83,26 @@ describe('Apps Script edit invalidation', () => {
     expect(videoGrid[5][8]).toBe(false);
   });
 
+  it('invalidates the old video when a FONTI slug is cleared or moved', () => {
+    const videoGrid: Grid = { 5: videoRow() };
+    const sourceGrid: Grid = { 2: { 1: '', 2: '00:35', 3: 'Claim', 4: 'Fonte' } };
+    const { ctx, fontiSheet } = makeContext(videoGrid, sourceGrid);
+    ctx.handleBrainframeEdit({ range: eventRange(fontiSheet, 2, 1), value: '', oldValue: 'video-test' });
+    expect(videoGrid[5][7]).toBe('MODIFICATO - DA RIPUBBLICARE');
+    expect(videoGrid[5][8]).toBe(false);
+  });
+
+  it('invalidates all published videos after a structural row change', () => {
+    const second = { ...videoRow(), 1: 'Secondo video', 2: 'secondo-video' };
+    const videoGrid: Grid = { 5: videoRow(), 6: second };
+    const { ctx } = makeContext(videoGrid);
+    ctx.handleBrainframeChange({ changeType: 'REMOVE_ROW' });
+    expect(videoGrid[5][7]).toBe('MODIFICATO - DA RIPUBBLICARE');
+    expect(videoGrid[5][8]).toBe(false);
+    expect(videoGrid[6][7]).toBe('MODIFICATO - DA RIPUBBLICARE');
+    expect(videoGrid[6][8]).toBe(false);
+  });
+
   it('ignores script-owned VIDEO status columns', () => {
     const grid: Grid = { 5: videoRow() };
     const { ctx, videoSheet } = makeContext(grid);
