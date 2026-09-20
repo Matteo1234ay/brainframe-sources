@@ -74,5 +74,4 @@ function setupBrainframeSheet() {
   log.autoResizeColumns(1, BF.LOG_HEADERS.length);
 
   installBrainframeTriggers_();
-  onOpen();
 }
