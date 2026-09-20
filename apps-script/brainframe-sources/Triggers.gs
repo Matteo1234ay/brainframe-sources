@@ -24,6 +24,15 @@ function invalidatePublishedVideo_(slug) {
   }
 }
 
+function fillSlugFromTitle_(sheet, row, eventValue) {
+  var slugCell = sheet.getRange(row, 2);
+  if (String(slugCell.getValue() || '').trim()) return;
+  var title = String(eventValue || sheet.getRange(row, 1).getValue() || '').trim();
+  if (!title) return;
+  var slug = slugify_(title);
+  if (slug) slugCell.setValue(slug);
+}
+
 function handleBrainframeEdit(event) {
   if (!event || !event.range) return;
   var range = event.range;
@@ -45,6 +54,7 @@ function handleBrainframeEdit(event) {
 
   if (sheetName === BF.VIDEO_SHEET) {
     if (row < BF.VIDEO_DATA_ROW || column < 1 || column > 6) return;
+    if (column === 1) fillSlugFromTitle_(sheet, row, event.value);
     invalidatePublishedVideo_(sheet.getRange(row, 2).getValue());
     return;
   }
