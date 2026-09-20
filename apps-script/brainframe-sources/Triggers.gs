@@ -24,6 +24,24 @@ function invalidatePublishedVideo_(slug) {
   }
 }
 
+function invalidateAllPublishedVideos_(spreadsheet) {
+  spreadsheet = spreadsheet || SpreadsheetApp.getActive();
+  var videoSheet = spreadsheet && spreadsheet.getSheetByName(BF.VIDEO_SHEET);
+  if (!videoSheet) return;
+  var lastRow = videoSheet.getLastRow();
+  if (lastRow < BF.VIDEO_DATA_ROW) return;
+
+  for (var row = BF.VIDEO_DATA_ROW; row <= lastRow; row += 1) {
+    var state = String(videoSheet.getRange(row, 7).getValue() || '').trim();
+    var publication = String(videoSheet.getRange(row, 9).getValue() || '').trim();
+    var wasPublished = state === 'PUBBLICATO' || state === 'MODIFICATO - DA RIPUBBLICARE' || publication === 'PUBBLICATO';
+    if (!wasPublished) continue;
+    videoSheet.getRange(row, 7).setValue('MODIFICATO - DA RIPUBBLICARE');
+    videoSheet.getRange(row, 8).setValue(false);
+    videoSheet.getRange(row, 9).setValue('MODIFICHE NON PUBBLICATE');
+  }
+}
+
 function fillSlugFromTitle_(sheet, row, eventValue) {
   var slugCell = sheet.getRange(row, 2);
   if (String(slugCell.getValue() || '').trim()) return;
@@ -61,6 +79,24 @@ function handleBrainframeEdit(event) {
 
   if (sheetName === BF.FONTI_SHEET) {
     if (row < 2 || column < 1 || column > BF.FONTI_HEADERS.length) return;
-    invalidatePublishedVideo_(sheet.getRange(row, 1).getValue());
+
+    var isMultiCell = (range.getNumRows && range.getNumRows() > 1) || (range.getNumColumns && range.getNumColumns() > 1);
+    if (isMultiCell) {
+      invalidateAllPublishedVideos_();
+      return;
+    }
+
+    var currentSlug = String(sheet.getRange(row, 1).getValue() || '').trim();
+    var oldSlug = column === 1 ? String(event.oldValue || '').trim() : '';
+    if (oldSlug && oldSlug !== currentSlug) invalidatePublishedVideo_(oldSlug);
+    if (currentSlug) invalidatePublishedVideo_(currentSlug);
+    else if (column === 1 && !oldSlug) invalidateAllPublishedVideos_();
   }
+}
+
+function handleBrainframeChange(event) {
+  if (!event) return;
+  var structuralChanges = ['INSERT_ROW', 'REMOVE_ROW', 'INSERT_COLUMN', 'REMOVE_COLUMN', 'INSERT_GRID', 'REMOVE_GRID'];
+  if (structuralChanges.indexOf(event.changeType) === -1) return;
+  invalidateAllPublishedVideos_(event.source || SpreadsheetApp.getActive());
 }
