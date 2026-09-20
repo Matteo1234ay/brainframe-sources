@@ -82,7 +82,6 @@ function buildPublicationModels_(videoRows, sourceRows) {
     var attached = (sourceRows || []).filter(function(sourceRow) {
       return text_(sourceRow['Video slug']) === slug;
     });
-    if (!attached.length) localErrors.push(slug + ': nessuna fonte associata');
 
     var claimMap = {};
     var claimOrder = [];
@@ -133,7 +132,7 @@ function buildPublicationModels_(videoRows, sourceRows) {
       return clean;
     });
 
-    if (!claims.length) {
+    if (attached.length && !claims.length) {
       errors.push(slug + ': nessun claim valido');
       return;
     }
