@@ -19,4 +19,6 @@ describe('video data validation', () => {
   it('rejects unknown categories', () => expect(() => parseVideos([{ ...base, category: 'marketing' }])).toThrow(/category/i));
   it('rejects duplicate slugs', () => expect(() => parseVideos([base, base])).toThrow(/duplicate slug/i));
   it('sorts claims by timestamp', () => expect(sortClaimsByTime(base.claims).map((claim) => claim.time)).toEqual(['00:42', '02:15']));
+  it('rejects non-YouTube video links', () => expect(() => parseVideos([{ ...base, youtube: 'https://example.com/video' }])).toThrow(/youtube/i));
+  it('keeps the legacy Brainframe channel URL valid', () => expect(parseVideos([{ ...base, youtube: 'https://www.youtube.com/@BrainframeIT' }])).toHaveLength(1));
 });
