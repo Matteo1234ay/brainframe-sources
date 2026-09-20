@@ -67,14 +67,15 @@ describe('Apps Script publication model', () => {
 
   it('sorts claims chronologically and generates a slug when missing', () => {
     const ctx = modelContext();
+    const generatedSlug = 'quanto-costa-davvero-l-ai';
     const result = plain(ctx.buildPublicationModels_([
       video({ 'Titolo': 'Quanto costa davvero l’AI?', 'Slug': '' })
     ], [
-      source({ 'Timestamp': '12:05', 'Claim': 'Secondo claim' }),
-      source({ row: 3, 'Timestamp': '00:42', 'Claim': 'Primo claim', 'Titolo fonte': 'Fonte B', 'URL fonte': 'https://example.com/b' })
+      source({ 'Video slug': generatedSlug, 'Timestamp': '12:05', 'Claim': 'Secondo claim' }),
+      source({ row: 3, 'Video slug': generatedSlug, 'Timestamp': '00:42', 'Claim': 'Primo claim', 'Titolo fonte': 'Fonte B', 'URL fonte': 'https://example.com/b' })
     ]));
     expect(result.errors).toEqual([]);
-    expect(result.models[0].slug).toBe('quanto-costa-davvero-l-ai');
+    expect(result.models[0].slug).toBe(generatedSlug);
     expect(result.models[0].claims.map((claim: any) => claim.time)).toEqual(['00:42', '12:05']);
   });
 
