@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CATEGORIES, getVideosByCategory } from '../lib/videos';
+import { withBase } from '../lib/paths';
+---
+<BaseLayout title="Categorie — Brainframe">
+  <main id="main-content" class="page-shell categories-page">
+    <header class="editorial-header">
+      <p>Quattro lenti sull’intelligenza artificiale</p>
+      <h1>Categorie</h1>
+    </header>
+    {CATEGORIES.map((category) => (
+      <section id={category.id} class="category-section">
+        <p class="category-name">{category.label}</p>
+        <h2>{category.prompt}</h2>
+        <div class="video-grid">
+          {getVideosByCategory(category.id).map((video) => (
+            <article class="video-card">
+              <small>{category.label}</small>
+              <h3>{video.title}</h3>
+              {video.description && <p>{video.description}</p>}
+              <a href={withBase(`/fonti/${video.slug}`)}>Vedi le fonti →</a>
+            </article>
+          ))}
+        </div>
+      </section>
+    ))}
+  </main>
+</BaseLayout>

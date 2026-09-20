@@ -1,0 +1,26 @@
+{
+  "name": "brainframe-sources",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@fontsource/bebas-neue": "latest",
+    "@fontsource/inter": "latest",
+    "@fontsource/oswald": "latest",
+    "astro": "latest"
+  },
+  "devDependencies": {
+    "@astrojs/check": "latest",
+    "@playwright/test": "latest",
+    "typescript": "latest",
+    "vitest": "latest"
+  }
+}

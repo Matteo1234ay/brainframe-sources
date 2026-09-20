@@ -1,0 +1,22 @@
+{
+  "title": "DEMO — Come leggiamo una fonte",
+  "slug": "demo-sourcepage",
+  "category": "ingegneria",
+  "youtube": "https://www.youtube.com/@BrainframeIT",
+  "published": "2026-09-20",
+  "description": "Pagina dimostrativa del formato SourcePage. Non rappresenta un video Brainframe pubblicato.",
+  "claims": [
+    {
+      "time": "00:42",
+      "claim": "L’architettura Transformer usa meccanismi di attenzione come componente centrale.",
+      "sources": [
+        {
+          "title": "Attention Is All You Need",
+          "author": "Vaswani et al.",
+          "url": "https://arxiv.org/abs/1706.03762"
+        }
+      ]
+    }
+  ],
+  "corrections": []
+}

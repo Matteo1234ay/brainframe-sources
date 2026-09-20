@@ -1,0 +1,92 @@
+---
+import '@fontsource/bebas-neue/400.css';
+import '@fontsource/oswald/400.css';
+import '@fontsource/oswald/500.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/600.css';
+import { withBase } from '../lib/paths';
+
+interface Props { title: string; description?: string; pageClass?: string; }
+const {
+  title,
+  description = 'Le fonti dietro i video Brainframe sull’intelligenza artificiale.',
+  pageClass = ''
+} = Astro.props;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : Astro.url.toString();
+const ogImage = Astro.site ? new URL(withBase('/og-default.svg'), Astro.site).toString() : withBase('/og-default.svg');
+---
+<!doctype html>
+<html lang="it" data-base-path={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#10002F" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+    <title>{title}</title>
+  </head>
+  <body class={pageClass}>
+    <a class="skip-link" href="#main-content">Salta al contenuto</a>
+    <header class="site-header">
+      <a class="brand" href={withBase('/')} aria-label="Brainframe — Home">BRAINFRAME</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Apri menu">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Navigazione principale">
+        <a href={withBase('/')}>Home</a>
+        <a href={withBase('/categorie')}>Categorie</a>
+        <a href={withBase('/chi-siamo')}>Chi siamo</a>
+        <a href={withBase('/cerca')}>Cerca</a>
+      </nav>
+    </header>
+    <slot />
+    <footer class="site-footer">
+      <div class="page-shell footer-inner">
+        <strong>BRAINFRAME</strong>
+        <div class="footer-links">
+          <a href="https://www.youtube.com/@BrainframeIT" rel="me external">YouTube</a>
+          <a href={withBase('/chi-siamo')}>Chi siamo</a>
+        </div>
+      </div>
+    </footer>
+    <script is:inline>
+      const button = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('#site-nav');
+      button?.addEventListener('click', () => {
+        const open = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', String(!open));
+        button.setAttribute('aria-label', open ? 'Apri menu' : 'Chiudi menu');
+        nav?.toggleAttribute('data-open', !open);
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bf-blue:#10002f; --bf-white:#fff; --bf-ink:#17131d; --bf-muted:#6d6875;
+    --bf-line:#e8e5eb; --bf-soft:#f6f4f7; --display:'Bebas Neue',sans-serif;
+    --editorial:'Oswald',sans-serif; --body:'Inter',system-ui,sans-serif;
+    --max:1180px; --header:72px;
+  }
+  *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;color:var(--bf-ink);background:var(--bf-white);font-family:var(--body);line-height:1.55}
+  a{color:inherit} button,input{font:inherit} img,svg{max-width:100%}
+  .page-shell{width:min(calc(100% - 40px),var(--max));margin-inline:auto}
+  .skip-link{position:fixed;z-index:100;top:10px;left:10px;transform:translateY(-160%);padding:.65rem .9rem;border-radius:999px;background:#fff;color:var(--bf-blue);font-family:var(--editorial);text-decoration:none}
+  .skip-link:focus{transform:translateY(0)} :focus-visible{outline:3px solid currentColor;outline-offset:4px}
+  .site-header{position:fixed;inset:0 0 auto;z-index:50;min-height:var(--header);display:flex;align-items:center;gap:32px;padding:0 max(20px,calc((100vw - var(--max))/2));color:#fff;background:rgba(16,0,47,.88);border-bottom:1px solid rgba(255,255,255,.12);backdrop-filter:blur(12px)}
+  .brand{margin-right:auto;font-family:var(--display);font-size:1.8rem;letter-spacing:.04em;text-decoration:none}
+  .site-nav{display:flex;gap:28px;font-family:var(--editorial);text-transform:uppercase;letter-spacing:.05em;font-size:.9rem}.site-nav a{text-decoration:none}.site-nav a:hover{text-decoration:underline;text-underline-offset:5px}
+  .menu-toggle{display:none;color:inherit;background:transparent;border:1px solid rgba(255,255,255,.35);padding:8px 12px;border-radius:999px;font-family:var(--editorial);text-transform:uppercase}
+  .site-footer{background:var(--bf-blue);color:#fff}.footer-inner{min-height:150px;display:flex;align-items:center;gap:28px}.footer-inner strong{font-family:var(--display);font-size:2rem}.footer-links{margin-left:auto;display:flex;gap:24px;font-family:var(--editorial);text-transform:uppercase}
+  .editorial-header{padding:calc(var(--header) + 80px) 0 64px}.editorial-header h1{margin:0;color:var(--bf-blue);font-family:var(--display);font-size:clamp(4.6rem,10vw,8rem);line-height:.86}.editorial-header>p{max-width:760px;font-size:clamp(1.05rem,2vw,1.35rem)}
+  .category-section{padding:68px 0;border-top:1px solid var(--bf-line);scroll-margin-top:calc(var(--header) + 24px)}.category-name{margin:0;color:var(--bf-blue);font-family:var(--display);font-size:clamp(3rem,7vw,5.5rem);line-height:.9}.category-section>h2,.about-page h2{font-family:var(--editorial);font-weight:400;font-size:clamp(1.5rem,3vw,2.3rem)}
+  .video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.video-card{border-top:1px solid currentColor;padding:22px 0 8px;min-width:0}.video-card small{font-family:var(--editorial);text-transform:uppercase;letter-spacing:.08em;opacity:.68}.video-card h3{margin:14px 0 0;font-family:var(--display);font-size:clamp(2rem,4vw,3.1rem);line-height:.94;overflow-wrap:anywhere}.video-card p{color:var(--bf-muted)}.video-card a{display:inline-block;margin-top:12px;color:var(--bf-blue);font-family:var(--editorial);text-transform:uppercase}
+  .about-page{padding-bottom:100px}.about-page section{max-width:760px;padding:34px 0;border-top:1px solid var(--bf-line)}
+  @media(max-width:820px){.video-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:640px){.page-shell{width:min(calc(100% - 28px),var(--max))}.site-header{padding-inline:14px}.menu-toggle{display:inline-flex}.site-nav{display:none;position:absolute;top:var(--header);left:0;right:0;flex-direction:column;gap:0;background:var(--bf-blue);border-bottom:1px solid rgba(255,255,255,.14)}.site-nav[data-open]{display:flex}.site-nav a{padding:17px 20px;border-top:1px solid rgba(255,255,255,.1)}.video-grid{grid-template-columns:1fr}.footer-inner{align-items:flex-start;flex-direction:column;padding-block:36px}.footer-links{margin-left:0;flex-wrap:wrap}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+</style>
