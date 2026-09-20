@@ -29,7 +29,7 @@ function makeContext(videoGrid: Grid, sourceGrid: Grid = {}) {
     getSheetByName: (name: string) => name === 'VIDEO' ? videoSheet : name === 'FONTI' ? fontiSheet : null
   };
   const publishApprovedVideos = vi.fn();
-  const ctx = loadAppsScript(['Config.gs', 'Triggers.gs'], {
+  const ctx = loadAppsScript(['Config.gs', 'Model.gs', 'Triggers.gs'], {
     SpreadsheetApp: { getActive: () => spreadsheet },
     publishApprovedVideos
   });
@@ -57,6 +57,13 @@ function eventRange(sheet: any, row: number, column: number, a1 = '') {
 }
 
 describe('Apps Script edit invalidation', () => {
+  it('writes an automatic slug when a new VIDEO title is entered', () => {
+    const grid: Grid = { 5: { ...videoRow('BOZZA', false, ''), 1: 'Quanto costa davvero l’AI?', 2: '' } };
+    const { ctx, videoSheet } = makeContext(grid);
+    ctx.handleBrainframeEdit({ range: eventRange(videoSheet, 5, 1), value: 'Quanto costa davvero l’AI?' });
+    expect(grid[5][2]).toBe('quanto-costa-davvero-l-ai');
+  });
+
   it('clears approval when published VIDEO content is edited', () => {
     const grid: Grid = { 5: videoRow() };
     const { ctx, videoSheet } = makeContext(grid);
