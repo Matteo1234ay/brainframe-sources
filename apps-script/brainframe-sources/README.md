@@ -59,7 +59,7 @@ Una riga = una fonte usata per un claim.
 | Colonna | Contenuto |
 | --- | --- |
 | Video slug | Deve corrispondere allo slug del video |
-| Timestamp | Formato `MM:SS` o minuti superiori, per esempio `75:04` |
+| Timestamp | Formato `M:SS` / `MM:SS`; sono validi anche minuti superiori, per esempio `1:05` o `75:04` |
 | Claim | Punto/affermazione del video sostenuto dalla fonte |
 | Titolo fonte | Titolo del paper, report, articolo, documentazione, ecc. |
 | Autore / Ente | Facoltativo |
