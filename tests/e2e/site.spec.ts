@@ -40,11 +40,12 @@ test('scrolling perspective section shows only white questions', async ({ page }
   }
 });
 
-test('demo SourcePage exposes the used source and hides empty corrections', async ({ page }) => {
+test('demo SourcePage exposes the used source and its summary and hides empty corrections', async ({ page }) => {
   await page.goto('/fonti/demo-sourcepage/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('DEMO — Come leggiamo una fonte');
   await expect(page.getByText('00:42')).toBeVisible();
   await expect(page.getByRole('link', { name: /Attention Is All You Need/ })).toHaveAttribute('href', /arxiv\.org/);
+  await expect(page.getByText('Paper NeurIPS 2017 che introduce l’architettura Transformer e usa l’attenzione come componente centrale.')).toBeVisible();
   await expect(page.getByRole('heading', { name: /Correzioni/i })).toHaveCount(0);
 });
 
