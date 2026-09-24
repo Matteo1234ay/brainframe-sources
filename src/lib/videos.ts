@@ -1,6 +1,6 @@
 export const CATEGORY_IDS = ['filosofia', 'design', 'economia', 'ingegneria'] as const;
 export type CategoryId = (typeof CATEGORY_IDS)[number];
-export type Source = { title: string; author?: string; url: string };
+export type Source = { title: string; author?: string; url: string; summary?: string };
 export type Claim = { time: string; claim: string; note?: string; sources: Source[] };
 export type Correction = { date: string; text: string; sourceUrl?: string };
 export type VideoRecord = { title: string; slug: string; category: CategoryId; youtube: string; published: string; description?: string; claims: Claim[]; corrections?: Correction[] };
@@ -34,7 +34,11 @@ function validateVideo(raw: any): VideoRecord {
     if (!TIMESTAMP.test(claim.time)) throw new Error(`invalid timestamp: ${claim.time}`);
     if (typeof claim.claim !== 'string' || !claim.claim.trim()) throw new Error('claim text is required');
     if (!Array.isArray(claim.sources) || claim.sources.length === 0) throw new Error('each claim needs at least one source');
-    for (const source of claim.sources) { if (!source.title?.trim()) throw new Error('source title is required'); assertUrl(source.url, 'source.url'); }
+    for (const source of claim.sources) {
+      if (!source.title?.trim()) throw new Error('source title is required');
+      assertUrl(source.url, 'source.url');
+      if (source.summary !== undefined && (typeof source.summary !== 'string' || !source.summary.trim())) throw new Error('source summary must be a non-empty string');
+    }
   }
   return { ...raw, claims: sortClaimsByTime(raw.claims) } as VideoRecord;
 }
