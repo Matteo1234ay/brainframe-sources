@@ -1,0 +1,155 @@
+{
+  "title": "L’AI è davvero intelligente?",
+  "slug": "ai-intelligente",
+  "category": "filosofia",
+  "youtube": "https://youtu.be/IfXH6p1QkD0",
+  "published": "2026-09-25",
+  "description": "Questa pagina raccoglie le fonti utilizzate nel video Brainframe sull’intelligenza artificiale, associate ai passaggi che supportano. Ogni fonte include una breve sintesi e il riferimento originale.",
+  "claims": [
+    {
+      "time": "01:39",
+      "claim": "Il termine «artificial intelligence» compare nel proposal di Dartmouth del 1955, che definisce il programma di ricerca del workshop del 1956.",
+      "sources": [
+        {
+          "title": "A Proposal for the Dartmouth Summer Research Project on Artificial Intelligence",
+          "author": "John McCarthy, Marvin L. Minsky, Nathaniel Rochester & Claude E. Shannon",
+          "url": "https://doi.org/10.1609/aimag.v27i4.1904",
+          "summary": "Documento fondativo del Dartmouth Summer Research Project. Propone di studiare come le macchine possano usare il linguaggio, formare concetti, risolvere problemi e migliorarsi, formulando esplicitamente il campo come «artificial intelligence»."
+        }
+      ]
+    },
+    {
+      "time": "01:43",
+      "claim": "Prima di Dartmouth, Shannon e McCarthy curarono Automata Studies, una raccolta del 1956 sui modelli matematici e computazionali degli automi.",
+      "sources": [
+        {
+          "title": "Automata Studies (Annals of Mathematics Studies, Vol. 34)",
+          "author": "Claude E. Shannon & John McCarthy (eds.)",
+          "url": "https://www.jstor.org/stable/j.ctt1bgzb3s",
+          "summary": "Volume accademico pubblicato da Princeton University Press nel 1956. Raccoglie lavori su automi, macchine di Turing e computazione; serve a ricostruire il lessico tecnico che precede la scelta del nome «artificial intelligence»."
+        }
+      ]
+    },
+    {
+      "time": "02:00",
+      "claim": "Nel Lighthill Debate del 1973 McCarthy ricostruì la scelta del termine «artificial intelligence» e la collegò alla ricerca di fondi per il summer study.",
+      "sources": [
+        {
+          "title": "Lighthill Controversy Debate at the Royal Institution (BBC TV, June 1973)",
+          "author": "John McCarthy et al. / AIAI, University of Edinburgh",
+          "url": "https://www.aiai.ed.ac.uk/events/lighthill1973/",
+          "summary": "Archivio storico del dibattito BBC del 1973 con McCarthy, Lighthill, Michie e Gregory. McCarthy vi racconta in prima persona perché scelse l’espressione «artificial intelligence» e il precedente di Automata Studies."
+        }
+      ]
+    },
+    {
+      "time": "02:18",
+      "claim": "In AI, riprodurre una capacità non richiede imitare fedelmente il modo in cui la realizza un essere umano, come il volo artificiale non imita esattamente gli uccelli.",
+      "sources": [
+        {
+          "title": "Artificial Intelligence: A Modern Approach (4th ed.), Chapter 1",
+          "author": "Stuart Russell & Peter Norvig",
+          "url": "https://aima.cs.berkeley.edu/4th-ed/pdfs/newchap01.pdf",
+          "summary": "Nel capitolo introduttivo gli autori distinguono l’obiettivo di costruire sistemi efficaci dall’imitazione letterale dell’essere umano. Usano il volo artificiale: l’aeronautica ha avuto successo studiando l’aerodinamica, non copiando esattamente gli uccelli."
+        }
+      ]
+    },
+    {
+      "time": "03:05",
+      "claim": "Nella letteratura NLG, «hallucination» indica contenuti generati non fedeli o non supportati, studiati tramite definizioni, metriche e strategie di mitigazione.",
+      "sources": [
+        {
+          "title": "Survey of Hallucination in Natural Language Generation",
+          "author": "Ziwei Ji, Nayeon Lee, Rita Frieske, Tiezheng Yu, Dan Su, Yan Xu, Etsuko Ishii, Ye Jin Bang, Andrea Madotto & Pascale Fung",
+          "url": "https://doi.org/10.1145/3571730",
+          "summary": "Survey di ACM Computing Surveys che riordina la ricerca sulle hallucinations nella generazione di linguaggio: definizioni, cause, metriche, mitigazioni e differenze tra vari compiti NLG. Il termine è tecnico e non dimostra uno stato percettivo della macchina."
+        }
+      ]
+    },
+    {
+      "time": "03:34",
+      "claim": "L’architettura Transformer usa l’attenzione come meccanismo centrale e rimuove ricorrenza e convoluzioni dal modello sequence-to-sequence originale.",
+      "sources": [
+        {
+          "title": "Attention Is All You Need",
+          "author": "Ashish Vaswani et al.",
+          "url": "https://proceedings.neurips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html",
+          "summary": "Paper NeurIPS 2017 che introduce il Transformer. Descrive self-attention e multi-head attention e mostra l’architettura su compiti di traduzione; è la fonte tecnica per spiegare la struttura di base dei Transformer, non da sola la generazione next-token."
+        }
+      ]
+    },
+    {
+      "time": "03:46",
+      "claim": "La produzione di linguaggio fluente non dimostra, da sola, comprensione o grounding del significato.",
+      "sources": [
+        {
+          "title": "On the Dangers of Stochastic Parrots: Can Language Models Be Too Big?",
+          "author": "Emily M. Bender, Timnit Gebru, Angelina McMillan-Major & Shmargaret Shmitchell",
+          "url": "https://doi.org/10.1145/3442188.3445922",
+          "summary": "Paper peer-reviewed FAccT 2021 noto per la metafora dei «pappagalli stocastici». Analizza rischi dei grandi language model e sostiene che la manipolazione statistica delle forme linguistiche non basta, da sola, a dimostrare comprensione o intenzione comunicativa."
+        }
+      ]
+    },
+    {
+      "time": "04:16",
+      "claim": "GPT-3 è un language model autoregressivo: genera sequenze condizionandosi sul contesto precedente.",
+      "sources": [
+        {
+          "title": "Language Models are Few-Shot Learners",
+          "author": "Tom B. Brown et al.",
+          "url": "https://papers.neurips.cc/paper/2020/hash/1457c0d6bfcb4967418bfb8ac142f64a-Abstract.html",
+          "summary": "Paper NeurIPS 2020 su GPT-3, descritto dagli autori come modello linguistico autoregressivo da 175 miliardi di parametri. È più adatto di Vaswani per sostenere la parte dello script sulla generazione sequenziale del testo."
+        }
+      ]
+    },
+    {
+      "time": "04:30",
+      "claim": "La distinzione tra competenza e comprensione permette di descrivere sistemi capaci di ottenere risultati senza attribuire loro automaticamente una comprensione umana.",
+      "sources": [
+        {
+          "title": "From Bacteria to Bach and Back: The Evolution of Minds",
+          "author": "Daniel C. Dennett",
+          "url": "https://wwnorton.co.uk/books/9780393355505-from-bacteria-to-bach-and-back-24efcf1c-cc59-4a4b-be15-0ec77f39de82",
+          "summary": "Dennett sviluppa l’idea di «competence without comprehension»: capacità efficaci possono emergere senza una comprensione cosciente delle ragioni che le producono. È una cornice filosofica, non una prova sperimentale sulla coscienza degli LLM."
+        }
+      ]
+    },
+    {
+      "time": "05:18",
+      "claim": "ELIZA mostrò già negli anni Sessanta che una conversazione apparentemente plausibile può essere prodotta da regole relativamente semplici di manipolazione del testo.",
+      "sources": [
+        {
+          "title": "ELIZA—a computer program for the study of natural language communication between man and machine",
+          "author": "Joseph Weizenbaum",
+          "url": "https://doi.org/10.1145/365153.365168",
+          "summary": "Articolo originale del 1966 su ELIZA. Weizenbaum descrive un programma che scompone l’input, riconosce pattern e ricompone risposte: una fonte primaria utile per capire perché un dialogo convincente non implica automaticamente comprensione."
+        }
+      ]
+    },
+    {
+      "time": "05:37",
+      "claim": "Le tecnologie dell’informazione modificano l’ambiente in cui viviamo e il modo in cui distribuiamo azione, decisioni e responsabilità.",
+      "sources": [
+        {
+          "title": "The Fourth Revolution: How the Infosphere Is Reshaping Human Reality",
+          "author": "Luciano Floridi",
+          "url": "https://www.oii.ox.ac.uk/research/publications/the-fourth-revolution/",
+          "summary": "Floridi descrive l’«infosfera» e la condizione «onlife»: le ICT non sono solo strumenti, ma forze ambientali che trasformano relazioni, identità e pratiche sociali. È la cornice filosofica per discutere conseguenze e responsabilità, non una fonte tecnica sul funzionamento degli LLM."
+        }
+      ]
+    },
+    {
+      "time": "05:57",
+      "claim": "Decisioni automatizzate e modelli opachi possono incorporare scelte umane e produrre effetti su larga scala; dire «l’ha deciso l’algoritmo» non elimina la responsabilità.",
+      "sources": [
+        {
+          "title": "Weapons of Math Destruction: How Big Data Increases Inequality and Threatens Democracy",
+          "author": "Cathy O’Neil",
+          "url": "https://www.bompiani.it/catalogo/armi-di-distruzione-matematica-9788845294211",
+          "summary": "Saggio basato su casi di studio di modelli usati in scuola, lavoro, credito e altri ambiti. O’Neil analizza come sistemi opachi e difficili da contestare possano amplificare errori e disuguaglianze. È una fonte critica, non un paper peer-reviewed."
+        }
+      ]
+    }
+  ],
+  "corrections": []
+}
