@@ -1,0 +1,113 @@
+{
+  "title": "Da dove arriva il significato nelle parole di un’AI?",
+  "slug": "significato-parole-ai",
+  "category": "filosofia",
+  "youtube": "https://www.youtube.com/@BrainframeIT",
+  "published": "2026-09-30",
+  "description": "Questa pagina raccoglie le fonti utilizzate nel secondo video Brainframe, dedicato a come i modelli linguistici rappresentano le parole, sfruttano il contesto e sollevano il problema filosofico del significato e del grounding. Ogni fonte è associata al passaggio che supporta e accompagnata da una breve spiegazione.",
+  "claims": [
+    {
+      "time": "02:00",
+      "claim": "Il significato linguistico non si riduce necessariamente a una definizione fissa associata a ogni parola: uso e distribuzione nel contesto sono centrali in importanti tradizioni della linguistica e della filosofia del linguaggio.",
+      "sources": [
+        {
+          "title": "Distributional Structure",
+          "author": "Zellig S. Harris",
+          "url": "https://doi.org/10.1080/00437956.1954.11659520",
+          "summary": "Articolo del 1954 fondamentale per l’approccio distribuzionale al linguaggio. Harris studia come regolarità e differenze linguistiche possano essere descritte osservando la distribuzione degli elementi nei loro contesti, anticipando una parte della logica che sarà poi alla base delle rappresentazioni distribuzionali moderne."
+        },
+        {
+          "title": "Philosophical Investigations / Ricerche filosofiche",
+          "author": "Ludwig Wittgenstein",
+          "url": "https://search.worldcat.org/title/301079",
+          "summary": "Opera pubblicata postuma nel 1953. Wittgenstein lega il significato, in molti casi, all’uso delle espressioni nelle pratiche linguistiche e sviluppa il concetto di giochi linguistici. È una fonte filosofica, non una descrizione tecnica del funzionamento degli LLM."
+        }
+      ]
+    },
+    {
+      "time": "03:30",
+      "claim": "I modelli neurali possono rappresentare elementi linguistici tramite vettori numerici; le relazioni apprese tra questi vettori possono riflettere regolarità sintattiche e semantiche presenti nei dati.",
+      "sources": [
+        {
+          "title": "Efficient Estimation of Word Representations in Vector Space",
+          "author": "Tomas Mikolov, Kai Chen, Greg Corrado & Jeffrey Dean",
+          "url": "https://arxiv.org/abs/1301.3781",
+          "summary": "Paper del 2013 che introduce architetture efficienti per apprendere rappresentazioni vettoriali continue delle parole da grandi corpora. Gli autori valutano queste rappresentazioni su compiti di similarità sintattica e semantica, mostrando come regolarità linguistiche possano emergere nella geometria dello spazio vettoriale."
+        },
+        {
+          "title": "Attention Is All You Need",
+          "author": "Ashish Vaswani et al.",
+          "url": "https://proceedings.neurips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html",
+          "summary": "Paper NeurIPS 2017 che introduce l’architettura Transformer. Il modello opera su rappresentazioni vettoriali dei token e usa self-attention per costruire rappresentazioni dipendenti dal contesto. È la base architetturale di molti moderni language model."
+        }
+      ]
+    },
+    {
+      "time": "05:30",
+      "claim": "Nei Transformer il contributo di una parola alla rappresentazione finale dipende anche dagli altri token presenti nel contesto, non soltanto da una voce lessicale isolata.",
+      "sources": [
+        {
+          "title": "Attention Is All You Need",
+          "author": "Ashish Vaswani et al.",
+          "url": "https://proceedings.neurips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html",
+          "summary": "Il meccanismo di self-attention permette a ciascuna posizione della sequenza di pesare informazioni provenienti dalle altre posizioni. Per questo le rappresentazioni interne possono cambiare in funzione del contesto in cui un token compare."
+        }
+      ]
+    },
+    {
+      "time": "06:45",
+      "claim": "Saper usare una parola in modo appropriato e avere un significato ancorato all’esperienza non sono necessariamente la stessa cosa: questa distinzione è al centro del dibattito sul symbol grounding.",
+      "sources": [
+        {
+          "title": "The Symbol Grounding Problem",
+          "author": "Stevan Harnad",
+          "url": "https://doi.org/10.1016/0167-2789(90)90087-6",
+          "summary": "Articolo del 1990 che formula il symbol grounding problem: come può il significato di simboli formali diventare intrinseco al sistema invece di dipendere soltanto dall’interpretazione esterna? Harnad discute il limite di simboli definiti esclusivamente attraverso altri simboli e propone un grounding in rappresentazioni non simboliche."
+        },
+        {
+          "title": "Climbing towards NLU: On Meaning, Form, and Understanding in the Age of Data",
+          "author": "Emily M. Bender & Alexander Koller",
+          "url": "https://aclanthology.org/2020.acl-main.463/",
+          "summary": "Position paper ACL 2020 che distingue forma linguistica e significato. Attraverso il celebre esperimento mentale dell’Octopus Test, gli autori sostengono che un sistema addestrato soltanto sulla forma del linguaggio non può, da quei dati soltanto, acquisire il significato inteso come relazione con intenzioni comunicative e mondo esterno."
+        }
+      ]
+    },
+    {
+      "time": "08:30",
+      "claim": "La capacità di manipolare correttamente simboli o produrre testo plausibile non costituisce, da sola, una dimostrazione di comprensione nel senso umano del termine.",
+      "sources": [
+        {
+          "title": "Minds, Brains, and Programs",
+          "author": "John R. Searle",
+          "url": "https://doi.org/10.1017/S0140525X00005756",
+          "summary": "Articolo del 1980 che presenta l’argomento della Stanza Cinese. Searle sostiene che eseguire correttamente regole formali sui simboli non sia, da solo, sufficiente per stabilire comprensione o intenzionalità. È un argomento filosofico influente e discusso, non una dimostrazione sperimentale sugli LLM contemporanei."
+        },
+        {
+          "title": "Climbing towards NLU: On Meaning, Form, and Understanding in the Age of Data",
+          "author": "Emily M. Bender & Alexander Koller",
+          "url": "https://aclanthology.org/2020.acl-main.463/",
+          "summary": "Bender e Koller applicano la distinzione tra forma e significato ai moderni sistemi NLP e avvertono che prestazioni linguistiche elevate non autorizzano automaticamente a concludere che un modello abbia acquisito significato o comprensione."
+        }
+      ]
+    },
+    {
+      "time": "10:00",
+      "claim": "Quando descriviamo gli LLM con verbi come «capire», «credere» o «sapere», è utile distinguere la scorciatoia linguistica da affermazioni più forti su stati mentali o comprensione.",
+      "sources": [
+        {
+          "title": "Talking about Large Language Models",
+          "author": "Murray Shanahan",
+          "url": "https://doi.org/10.1145/3624724",
+          "summary": "Saggio pubblicato su Communications of the ACM nel 2024. Shanahan analizza il rischio di interpretare letteralmente il linguaggio antropomorfico usato per descrivere gli LLM e propone maggiore cautela quando termini psicologici come «conoscere» o «credere» vengono applicati ai modelli."
+        },
+        {
+          "title": "On the Dangers of Stochastic Parrots: Can Language Models Be Too Big?",
+          "author": "Emily M. Bender, Timnit Gebru, Angelina McMillan-Major & Shmargaret Shmitchell",
+          "url": "https://doi.org/10.1145/3442188.3445922",
+          "summary": "Paper peer-reviewed FAccT 2021 sui rischi dei grandi language model. Tra i temi discussi c’è la possibilità che testo fluente e coerente venga interpretato come prova di intenzione comunicativa o comprensione, mentre il modello apprende regolarità statistiche dalla forma linguistica dei dati."
+        }
+      ]
+    }
+  ],
+  "corrections": []
+}
