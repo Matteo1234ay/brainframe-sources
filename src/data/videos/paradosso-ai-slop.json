@@ -1,0 +1,119 @@
+{
+  "title": "Il paradosso degli AI slop",
+  "slug": "paradosso-ai-slop",
+  "category": "filosofia",
+  "youtube": "https://www.youtube.com/@BrainframeIT",
+  "published": "2026-10-08",
+  "description": "Questa pagina raccoglie le fonti utilizzate nel video Brainframe dedicato al rapporto tra intelligenza artificiale, creatività, percezione dell’autore e senso di autenticità. Le fonti sono organizzate per passaggio del video e accompagnate da una breve spiegazione del loro ruolo.",
+  "claims": [
+    {
+      "time": "00:00",
+      "claim": "Le campagne pubblicitarie realizzate con AI generativa possono suscitare forti reazioni negative quando vengono percepite come sostituti economici del lavoro creativo umano.",
+      "sources": [
+        {
+          "title": "Coca-Cola’s AI Christmas Ad Sparks Backlash",
+          "author": "Men’s Journal",
+          "url": "https://www.mensjournal.com/news/coca-cola-ai-christmas-ad-commercial-backlash-creator-response",
+          "summary": "Articolo che documenta le reazioni negative suscitate dalla campagna natalizia di Coca-Cola realizzata con strumenti di intelligenza artificiale generativa e riporta il dibattito pubblico sul valore creativo e sull’uso dell’AI nella pubblicità."
+        }
+      ]
+    },
+    {
+      "time": "00:20",
+      "claim": "Nel caso opposto, mostrare esplicitamente un processo fisico e artigianale può aumentare la percezione di intenzione, cura e lavoro umano dietro un risultato creativo.",
+      "sources": [
+        {
+          "title": "Apple TV Logo Glass Backstage",
+          "author": "Discussione r/appletv",
+          "url": "https://www.reddit.com/r/appletv/comments/1oqb462/",
+          "summary": "Discussione e materiale condiviso sul processo fisico utilizzato per realizzare l’animazione del logo Apple TV attraverso vetro, luci, riflessi e riprese in studio. Nel video viene usato come caso di contrasto percettivo rispetto a produzioni fortemente automatizzate."
+        }
+      ]
+    },
+    {
+      "time": "00:55",
+      "claim": "Una critica ricorrente alla generative AI è che rischia di automatizzare proprio le attività creative che molte persone vorrebbero preservare come spazio umano, lasciando invece agli esseri umani il lavoro meno desiderabile.",
+      "sources": [
+        {
+          "title": "Citazione attribuita a Joanna Maciejewska sulla creatività e l’automazione",
+          "author": "Joanna Maciejewska / discussione su Reddit",
+          "url": "https://www.reddit.com/r/SeriousConversation/comments/1r7zcvp/",
+          "summary": "Thread che riprende la celebre formulazione secondo cui l’AI dovrebbe occuparsi di bucato e piatti per lasciare agli esseri umani arte e scrittura, non il contrario. Nel video la citazione viene usata come sintesi del paradosso percepito dell’automazione creativa."
+        }
+      ]
+    },
+    {
+      "time": "02:10",
+      "claim": "Il giudizio estetico su un’opera può cambiare in base alla convinzione che sia stata creata da un essere umano o da un sistema di intelligenza artificiale, anche quando il contenuto visivo mostrato è lo stesso.",
+      "sources": [
+        {
+          "title": "Human-made versus AI-generated art: effects of authorship labels on aesthetic evaluation",
+          "author": "Frontiers in Psychology",
+          "url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2025.1509974/full",
+          "summary": "Studio sperimentale sulla percezione di opere attribuite a esseri umani o all’intelligenza artificiale. Mostra che l’etichetta di paternità può influenzare valutazioni come bellezza, autenticità e valore percepito anche quando gli stimoli visivi non cambiano."
+        }
+      ]
+    },
+    {
+      "time": "03:45",
+      "claim": "Le paure secondo cui una nuova tecnologia rende la creazione troppo facile e minaccia l’autorialità non sono nuove: argomenti simili accompagnarono anche la diffusione della fotografia.",
+      "sources": [
+        {
+          "title": "Is generative AI art the new photography – or a threat to human creativity?",
+          "author": "The Guardian",
+          "url": "https://www.theguardian.com/technology/2025/jan/12/is-generative-ai-art-the-new-photography-or-a-threat-to-human-creativity",
+          "summary": "Approfondimento sul parallelo storico tra l’attuale dibattito sull’arte generata dall’AI e le reazioni che accompagnarono l’arrivo della fotografia. Il confronto viene usato nel video per distinguere lo strumento tecnico dalle decisioni creative di chi lo utilizza."
+        }
+      ]
+    },
+    {
+      "time": "05:30",
+      "claim": "Nei processi di co-creazione con l’AI, livelli intermedi di automazione possono preservare più controllo, coinvolgimento e senso di appartenenza rispetto a un processo completamente automatizzato.",
+      "sources": [
+        {
+          "title": "Studio sulla co-creazione umano–IA e autenticità",
+          "author": "ResearchGate publication 405268257",
+          "url": "https://www.researchgate.net/publication/405268257",
+          "summary": "Studio del 2026 utilizzato nel video per discutere come diversi livelli di partecipazione dell’AI influenzino controllo percepito, coinvolgimento e senso di proprietà del risultato creativo. Il punto centrale è il confronto tra creazione umana, automazione spinta e workflow ibridi."
+        }
+      ]
+    },
+    {
+      "time": "06:25",
+      "claim": "Nel lavoro creativo e nel marketing, l’AI può essere impiegata come strumento di supporto all’interno di processi human-in-the-loop, mantenendo supervisione e decisione umana sui passaggi chiave.",
+      "sources": [
+        {
+          "title": "The Future of Marketing: AI Automation with Human Oversight",
+          "author": "Smartly.io",
+          "url": "https://www.smartly.io/resources/the-future-of-marketing-ai-automation-with-human-oversight",
+          "summary": "Risorsa sul ruolo della supervisione umana nei workflow di marketing automatizzati. Viene utilizzata come esempio applicativo del principio human-in-the-loop: delegare parti dell’esecuzione senza cedere completamente direzione, controllo e responsabilità."
+        },
+        {
+          "title": "Marketing in 2026: AI + Human — The Only Formula That Works",
+          "author": "Brillity Digital",
+          "url": "https://www.brillitydigital.com/blog/marketing-in-2026-ai-human-the-only-formula-that-works/",
+          "summary": "Articolo che sostiene un approccio integrato tra capacità umane e strumenti di intelligenza artificiale nel marketing. Nel video supporta la distinzione tra AI usata come amplificatore del lavoro umano e AI usata come sostituto totale del processo decisionale."
+        }
+      ]
+    },
+    {
+      "time": "07:50",
+      "claim": "Quando giudichiamo un prodotto creativo, non valutiamo soltanto l’output finale: la percezione di intenzione, sforzo, processo e presenza di un autore può contribuire in modo sostanziale alla nostra risposta.",
+      "sources": [
+        {
+          "title": "Human-made versus AI-generated art: effects of authorship labels on aesthetic evaluation",
+          "author": "Frontiers in Psychology",
+          "url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2025.1509974/full",
+          "summary": "I risultati dello studio mostrano che la semplice attribuzione dell’opera a un autore umano o a un sistema artificiale può alterare la valutazione dell’esperienza estetica, sostenendo l’idea che il contesto autoriale contribuisca al giudizio oltre alle caratteristiche visive dell’opera."
+        },
+        {
+          "title": "Is generative AI art the new photography – or a threat to human creativity?",
+          "author": "The Guardian",
+          "url": "https://www.theguardian.com/technology/2025/jan/12/is-generative-ai-art-the-new-photography-or-a-threat-to-human-creativity",
+          "summary": "Il confronto storico e culturale tra fotografia e generative AI aiuta a mostrare come il valore attribuito a una tecnologia creativa dipenda anche dal ruolo che riconosciamo all’autore nelle scelte, nel processo e nell’intenzione."
+        }
+      ]
+    }
+  ],
+  "corrections": []
+}
