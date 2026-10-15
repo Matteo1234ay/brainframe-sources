@@ -1,0 +1,65 @@
+{
+  "title": "Il vuoto di responsabilità dell’AI",
+  "slug": "vuoto-responsabilita-ai",
+  "category": "filosofia",
+  "youtube": "https://www.youtube.com/@BrainframeIT",
+  "published": "2026-10-15",
+  "description": "Chi risponde quando una decisione assistita dall’intelligenza artificiale provoca un danno? Dal caso di Robert Williams al responsibility gap di Andreas Matthias, fino all’accountability proposta da Claudio Novelli, Mariarosaria Taddeo e Luciano Floridi. I riferimenti temporali sono indicativi e saranno sincronizzati con il montaggio definitivo di 7:50. Il collegamento YouTube rimanda per ora al canale Brainframe, in attesa dell’URL del video.",
+  "claims": [
+    {
+      "time": "00:00",
+      "claim": "Nel 2020 Robert Williams fu arrestato ingiustamente a Detroit in seguito all’uso investigativo di un risultato errato del riconoscimento facciale; l’arresto coinvolse decisioni umane, non una decisione autonoma dell’algoritmo.",
+      "sources": [
+        {
+          "title": "Williams v. City of Detroit — Face Recognition False Arrest",
+          "author": "American Civil Liberties Union (ACLU)",
+          "url": "https://www.aclu.org/cases/williams-v-city-of-detroit-face-recognition-false-arrest",
+          "summary": "La ricostruzione documentata dell’arresto e della detenzione di Robert Williams, delle carenze nell’uso investigativo del riconoscimento facciale e del procedimento avviato contro la città di Detroit."
+        }
+      ]
+    },
+    {
+      "time": "03:00",
+      "claim": "Con sistemi capaci di adattare il proprio comportamento, attribuire una responsabilità morale o giuridica soltanto attraverso prevedibilità e controllo può diventare problematico: è il cosiddetto responsibility gap.",
+      "sources": [
+        {
+          "title": "The responsibility gap: Ascribing responsibility for the actions of learning automata",
+          "author": "Andreas Matthias (2004), Ethics and Information Technology, 6, 175–183",
+          "url": "https://doi.org/10.1007/s10676-004-3422-1",
+          "summary": "Il saggio introduce il problema del vuoto di responsabilità per sistemi il cui comportamento non può essere interamente previsto dall’operatore o dal progettista. È una tesi filosofica, non un’esenzione automatica dalle responsabilità legali."
+        }
+      ]
+    },
+    {
+      "time": "04:30",
+      "claim": "L’accountability nell’AI non coincide con la sola attribuzione retrospettiva della colpa: richiede relazioni istituzionali di giustificazione, controllo e conseguenze concrete per chi esercita il potere.",
+      "sources": [
+        {
+          "title": "Accountability in artificial intelligence: what it is and how it works",
+          "author": "Claudio Novelli, Mariarosaria Taddeo e Luciano Floridi (online 2023; volume 2024), AI & Society 39, 1871–1882",
+          "url": "https://doi.org/10.1007/s00146-023-01635-y",
+          "summary": "L’articolo analizza la struttura dell’accountability e il ruolo di chi deve rendere conto, di chi ha titolo a chiedere spiegazioni e delle conseguenze istituzionali che rendono effettivo il controllo."
+        }
+      ]
+    },
+    {
+      "time": "06:10",
+      "claim": "L’accordo del 28 giugno 2024 nel caso Williams ha introdotto limiti all’uso del riconoscimento facciale da parte della polizia di Detroit: un match da solo non basta per arrestare e servono riscontri indipendenti e affidabili.",
+      "sources": [
+        {
+          "title": "Williams v. City of Detroit — Settlement Agreement (28 giugno 2024)",
+          "author": "ACLU",
+          "url": "https://www.aclu.org/cases/williams-v-city-of-detroit-face-recognition-false-arrest",
+          "summary": "La pagina del caso raccoglie l’accordo e i documenti legali; il settlement prevede corroborazione indipendente, formazione e verifiche sull’uso della tecnologia."
+        },
+        {
+          "title": "Civil Rights Advocates Achieve the Nation’s Strongest Police Department Policy on Facial Recognition Technology",
+          "author": "ACLU of Michigan (28 giugno 2024)",
+          "url": "https://www.aclumich.org/press-releases/civil-rights-advocates-achieve-nations-strongest-police-department-policy-facial/",
+          "summary": "Comunicato che illustra i cambiamenti introdotti dall’accordo e il loro significato per la governance della tecnologia di riconoscimento facciale."
+        }
+      ]
+    }
+  ],
+  "corrections": []
+}
