@@ -3,7 +3,8 @@
 1. Duplica `src/data/videos/demo-sourcepage.json`.
 2. Rinomina il file con lo slug del video, per esempio `costo-ai.json`.
 3. Compila `title`, `slug`, `category`, `youtube`, `published`, `description`.
-4. Per ogni punto realmente sostenuto da una fonte nel video, aggiungi un elemento in `claims` con timestamp, claim e una o più fonti.
+4. Per ogni punto realmente sostenuto da una fonte nel video, aggiungi un elemento in `claims` con claim e una o più fonti. Aggiungi il timestamp `time` quando verificato nel montaggio.
+   Per i video in preparazione puoi omettere `youtube` e `published`: la pagina mostrerà lo stato «Video in preparazione», senza link o date fittizi.
 5. **Non inserire fonti soltanto consultate ma non usate nel video.**
 6. Lascia `corrections: []` se non esistono correzioni.
 7. Esegui `npm run build`: se il file è malformato, la build si ferma.
