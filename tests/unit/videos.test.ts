@@ -24,6 +24,13 @@ describe('video data validation', () => {
   it('defines the disclosure shown when a video has no external sources', () => {
     expect(NO_EXTERNAL_SOURCES_MESSAGE).toBe('Per questo video non sono state utilizzate fonti esterne.');
   });
+  it('accepts a video in preparation without invented video URL or timestamps', () => {
+    const { youtube, published, ...draft } = base;
+    const parsed = parseVideos([{ ...draft, slug: 'ai-brucia-miliardi', claims: [{ claim: 'Consumo dei data center', sources: [{ title: 'Energy and AI', url: 'https://www.iea.org/reports/energy-and-ai' }] }] }]);
+    expect(parsed[0].youtube).toBeUndefined();
+    expect(parsed[0].published).toBeUndefined();
+    expect(parsed[0].claims[0].time).toBeUndefined();
+  });
   it('rejects unknown categories', () => expect(() => parseVideos([{ ...base, category: 'marketing' }])).toThrow(/category/i));
   it('rejects duplicate slugs', () => expect(() => parseVideos([base, base])).toThrow(/duplicate slug/i));
   it('sorts claims by timestamp', () => expect(sortClaimsByTime(base.claims).map((claim) => claim.time)).toEqual(['00:42', '02:15']));
