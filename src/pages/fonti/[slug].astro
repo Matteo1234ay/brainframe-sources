@@ -16,8 +16,8 @@ const category = CATEGORIES.find((item) => item.id === video.category)!;
       <p class="source-category">{category.label}</p>
       <h1>{video.title}</h1>
       <div class="source-meta">
-        <time datetime={video.published}>{video.published}</time>
-        <a href={video.youtube} rel="external">Guarda il video su YouTube ↗</a>
+        {video.published ? <time datetime={video.published}>{video.published}</time> : <span>Video in preparazione</span>}
+        {video.youtube && <a href={video.youtube} rel="external">Guarda il video su YouTube ↗</a>}
       </div>
       {video.description && <p class="source-description">{video.description}</p>}
     </header>
@@ -26,7 +26,7 @@ const category = CATEGORIES.find((item) => item.id === video.category)!;
       <ol class="source-timeline" aria-label="Fonti usate nel video">
         {video.claims.map((claim) => (
           <li class="source-item">
-            <div class="source-time">{claim.time}</div>
+            <div class="source-time">{claim.time ?? 'Fonte'}</div>
             <div class="source-content">
               <h2>{claim.claim}</h2>
               {claim.note && <p class="source-note">{claim.note}</p>}
