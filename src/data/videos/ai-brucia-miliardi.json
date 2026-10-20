@@ -1,0 +1,20 @@
+{
+  "title": "L’AI brucia miliardi. Ma qualcuno si sta arricchendo.",
+  "slug": "ai-brucia-miliardi",
+  "category": "economia",
+  "description": "Le fonti del video Brainframe su investimenti, data center e costi energetici dell’intelligenza artificiale. La pagina sarà completata con link YouTube e minutaggi verificati dopo la pubblicazione.",
+  "claims": [
+    {
+      "claim": "L'intelligenza artificiale richiede infrastrutture fisiche ed energia elettrica; lo sviluppo dei data center può incontrare limiti nelle reti, mentre l'AI potrebbe anche contribuire a ottimizzare il settore energetico.",
+      "sources": [
+        {
+          "title": "Energy and AI",
+          "author": "International Energy Agency (IEA), 10 aprile 2025",
+          "url": "https://www.iea.org/reports/energy-and-ai",
+          "summary": "Rapporto IEA 2025 sull'intreccio fra intelligenza artificiale ed energia: consumi elettrici e investimenti nei data center, domanda futura, capacità delle reti e potenziali applicazioni dell'AI per l'efficienza e la gestione dei sistemi energetici."
+        }
+      ]
+    }
+  ],
+  "corrections": []
+}
