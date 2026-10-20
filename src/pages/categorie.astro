@@ -23,7 +23,23 @@ import { withBase } from '../lib/paths';
             </article>
           ))}
         </div>
+        {category.id === 'economia' && (
+          <aside class="economy-reference" aria-labelledby="energy-ai-title">
+            <p class="economy-reference-label">Fonte di riferimento · IEA, 2025</p>
+            <h3 id="energy-ai-title">Energy and AI</h3>
+            <p>Rapporto dell'Agenzia Internazionale dell'Energia sul rapporto tra intelligenza artificiale ed energia: consumi elettrici dei data center, investimenti nelle infrastrutture, vincoli delle reti e opportunità di ottimizzazione del settore energetico grazie all'AI.</p>
+            <a href="https://www.iea.org/reports/energy-and-ai" target="_blank" rel="external noopener">Consulta il rapporto originale ↗</a>
+          </aside>
+        )}
       </section>
     ))}
   </main>
 </BaseLayout>
+
+<style>
+  .economy-reference{max-width:770px;margin-top:32px;padding:24px 0 12px;border-top:1px solid var(--bf-line)}
+  .economy-reference-label{margin:0;color:var(--bf-muted);font-family:var(--editorial);font-size:.85rem;text-transform:uppercase;letter-spacing:.06em}
+  .economy-reference h3{margin:10px 0 12px;color:var(--bf-blue);font-family:var(--display);font-size:clamp(2rem,4vw,3.2rem);line-height:1}
+  .economy-reference>p:not(.economy-reference-label){max-width:70ch;color:var(--bf-muted)}
+  .economy-reference a{display:inline-block;margin-top:8px;color:var(--bf-blue);font-family:var(--editorial);text-transform:uppercase}
+</style>
