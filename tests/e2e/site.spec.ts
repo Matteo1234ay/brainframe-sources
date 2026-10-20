@@ -49,6 +49,14 @@ test('demo SourcePage exposes the used source and its summary and hides empty co
   await expect(page.getByRole('heading', { name: /Correzioni/i })).toHaveCount(0);
 });
 
+test('economy source page links to the IEA report without a fake YouTube link', async ({ page }) => {
+  await page.goto('/fonti/ai-brucia-miliardi/');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('L’AI brucia miliardi. Ma qualcuno si sta arricchendo.');
+  await expect(page.getByRole('link', { name: /Energy and AI/ })).toHaveAttribute('href', 'https://www.iea.org/reports/energy-and-ai');
+  await expect(page.getByText('Video in preparazione')).toBeVisible();
+  await expect(page.getByRole('link', { name: /Guarda il video su YouTube/ })).toHaveCount(0);
+});
+
 test('search finds content by source author', async ({ page }) => {
   await page.goto('/cerca/');
   await page.getByRole('searchbox').fill('Vaswani');
