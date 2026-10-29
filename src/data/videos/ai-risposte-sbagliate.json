@@ -1,0 +1,77 @@
+{
+  "title": "Hanno insegnato tutto SBAGLIATO a un'IA. E ha funzionato.",
+  "slug": "ai-risposte-sbagliate",
+  "category": "ingegneria",
+  "description": "Come apprendono le reti neurali? Partiamo dal paradosso di modelli capaci di memorizzare perfino etichette errate nei dati di addestramento, per distinguere adattamento, generalizzazione e robustezza. Le fonti sono associate ai passaggi effettivamente trattati nel video. I minutaggi della pagina saranno inseriti dopo la verifica del montaggio definitivo.",
+  "claims": [
+    {
+      "claim": "Una rete neurale può adattarsi perfettamente anche a etichette assegnate casualmente alle immagini del set di addestramento. Un risultato perfetto su quel set non dimostra che sappia classificare correttamente immagini nuove.",
+      "sources": [
+        {
+          "title": "Understanding deep learning requires rethinking generalization",
+          "author": "Chiyuan Zhang, Samy Bengio, Moritz Hardt, Benjamin Recht, Oriol Vinyals (2016/2017)",
+          "url": "https://arxiv.org/pdf/1611.03530",
+          "summary": "Studio sperimentale che mostra come reti profonde per la classificazione possano adattarsi perfettamente a etichette casuali, fino a raggiungere errore nullo sui dati di addestramento. È la fonte primaria del paradosso iniziale: memorizzare associazioni arbitrarie non equivale a generalizzare."
+        }
+      ]
+    },
+    {
+      "claim": "Memorizzazione e generalizzazione sono capacità distinte: la qualità e la struttura dei dati, oltre al comportamento dell'ottimizzazione, contano per spiegare perché una rete generalizzi.",
+      "sources": [
+        {
+          "title": "A Closer Look at Memorization in Deep Networks",
+          "author": "Devansh Arpit et al. (2017)",
+          "url": "https://arxiv.org/pdf/1706.05394",
+          "summary": "Indaga come reti neurali profonde trattino dati naturali e dati rumorosi. Mostra che la memorizzazione del rumore è possibile, ma l'apprendimento con gradienti tende spesso a catturare prima regolarità più semplici; non tutto l'apprendimento si riduce alla memoria."
+        },
+        {
+          "title": "Generalization in Deep Learning",
+          "author": "Kenji Kawaguchi, Leslie Pack Kaelbling, Yoshua Bengio (2018)",
+          "url": "https://lis.csail.mit.edu/pubs/kawaguchi-techreport18.pdf",
+          "summary": "Rapporto teorico del MIT che studia perché modelli complessi possano ottenere buone prestazioni su dati non visti, distinguendo il risultato sui dati di addestramento dal rischio di generalizzazione. La teoria copre condizioni e limiti specifici, non offre una garanzia per tutte le reti."
+        }
+      ]
+    },
+    {
+      "claim": "L'overfitting benigno mostra che, in specifiche condizioni, modelli con molti parametri possono adattarsi perfettamente ai dati di addestramento e conservare una buona capacità predittiva su dati nuovi: più parametri, da soli, non la garantiscono.",
+      "sources": [
+        {
+          "title": "Benign Overfitting in Linear Regression",
+          "author": "Peter L. Bartlett, Philip M. Long, Gábor Lugosi, Alexander Tsigler (2019/2020)",
+          "url": "https://arxiv.org/pdf/1906.11300",
+          "summary": "Analizza matematicamente quando l'interpolazione perfetta dei dati, anche rumorosi, può coesistere con buone previsioni fuori campione nella regressione lineare. È un risultato teorico su modelli lineari, non la dimostrazione che ogni rete neurale sovraparametrizzata generalizzi."
+        }
+      ]
+    },
+    {
+      "claim": "Le etichette sbagliate o contraddittorie nei dataset possono deteriorare la generalizzazione. Esistono metodi per imparare anche in presenza di rumore, ma la qualità dei dati rimane importante.",
+      "sources": [
+        {
+          "title": "Image Classification with Deep Learning in the Presence of Noisy Labels: A Survey",
+          "author": "Görkem Algan, İlkay Ulusoy (2019/2021)",
+          "url": "https://arxiv.org/pdf/1912.05170",
+          "summary": "Rassegna dei problemi introdotti da etichette erronee nella classificazione di immagini e delle strategie proposte per limitarne gli effetti, come funzioni di perdita e procedure di addestramento più robuste."
+        },
+        {
+          "title": "Learning from Noisy Labels with Deep Neural Networks: A Survey",
+          "author": "Hwanjun Song, Minseok Kim, Dongmin Park, Yooju Shin, Jae-Gil Lee (2020/2022)",
+          "url": "https://arxiv.org/pdf/2007.08199",
+          "summary": "Esamina l'impatto delle etichette rumorose sulle reti neurali e confronta diverse famiglie di tecniche di addestramento robusto. Chiarisce perché la pulizia e l'affidabilità delle annotazioni incidano sulla generalizzazione."
+        }
+      ]
+    },
+    {
+      "claim": "Un modello può generalizzare bene su immagini naturali ed essere comunque vulnerabile a perturbazioni avversarie. Correggere etichette rumorose non basta, da solo, a garantire robustezza.",
+      "note": "Nel video, la modifica di pochi pixel e la classificazione del cane come coccodrillo sono esempi narrativi: questa fonte non documenta quel preciso numero di pixel né quella specifica classificazione.",
+      "sources": [
+        {
+          "title": "How benign is benign overfitting?",
+          "author": "Amartya Sanyal, Puneet K. Dokania, Varun Kanade, Philip H. S. Torr (2020)",
+          "url": "https://arxiv.org/pdf/2007.04028",
+          "summary": "Studia il rapporto tra overfitting benigno, rumore nelle etichette e vulnerabilità agli attacchi avversari. Evidenzia che una buona generalizzazione su dati naturali non implica automaticamente robustezza contro perturbazioni costruite appositamente."
+        }
+      ]
+    }
+  ],
+  "corrections": []
+}
