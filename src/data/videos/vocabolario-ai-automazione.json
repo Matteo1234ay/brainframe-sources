@@ -1,0 +1,143 @@
+{
+  "title": "Vocabolario AI #1 — Automazione: cosa significa davvero?",
+  "slug": "vocabolario-ai-automazione",
+  "category": "filosofia",
+  "description": "Fonti e approfondimenti a supporto di Vocabolario AI #1. Partendo dalle regole automatiche per smistare le email, il video distingue l'esecuzione di compiti ripetitivi dall'uso dell'AI per interpretare richieste e agire. Gli esempi del negozio online e del pacco non spedito sono scenari illustrativi, non casi documentati. I minutaggi sono provvisori fino al montaggio finale.",
+  "claims": [
+    {
+      "time": "00:40",
+      "claim": "Un assistente AI può generare risposte apparentemente sicure ma non verificate: l'esempio del pacco mai spedito illustra il rischio di comunicare dati falsi.",
+      "note": "Il negozio e il pacco sono esempi inventati a scopo didattico.",
+      "sources": [
+        {
+          "title": "Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile (NIST AI 600-1), §2.2 Confabulation",
+          "author": "National Institute of Standards and Technology (NIST), 2024",
+          "url": "https://doi.org/10.6028/NIST.AI.600-1",
+          "summary": "Il NIST documenta il fenomeno delle risposte false o errate presentate con sicurezza dai modelli generativi, e il rischio che le persone vi facciano affidamento."
+        }
+      ]
+    },
+    {
+      "time": "01:35",
+      "claim": "Una regola del tipo «se nell'oggetto compare reso, applica l'etichetta Resi» è un esempio di automazione basata su criteri e azioni predefinite.",
+      "sources": [
+        {
+          "title": "Gestire i filtri di Gmail",
+          "author": "Google for Developers",
+          "url": "https://developers.google.com/workspace/gmail/api/guides/filter_settings?hl=it",
+          "summary": "Documentazione ufficiale sui filtri email: criteri quali oggetto o contenuto possono determinare azioni automatiche, come l'applicazione di un'etichetta."
+        },
+        {
+          "title": "Add a condition to a cloud flow in Power Automate",
+          "author": "Microsoft Learn",
+          "url": "https://learn.microsoft.com/en-us/power-automate/add-condition",
+          "summary": "Spiega come le condizioni vero/falso controllano le azioni di un flusso automatico. È il principio generale SE/ALLORA usato nell'esempio."
+        }
+      ]
+    },
+    {
+      "time": "02:05",
+      "claim": "L'automazione di attività ripetitive esiste indipendentemente dall'AI generativa; sistemi software a regole possono eseguire compiti come spostare file o compilare moduli.",
+      "sources": [
+        {
+          "title": "What is robotic process automation (RPA)?",
+          "author": "IBM",
+          "url": "https://www.ibm.com/think/topics/rpa",
+          "summary": "Introduzione alla RPA e ai processi ripetitivi eseguiti con script, regole e interazioni software. Non è una fonte sulla storia specifica delle lavatrici."
+        }
+      ]
+    },
+    {
+      "time": "03:05",
+      "claim": "Un sistema AI può classificare testi anche quando non contengono una specifica parola chiave: nel video, una richiesta informale viene interpretata come possibile reso.",
+      "sources": [
+        {
+          "title": "AutoML Text Classification",
+          "author": "Microsoft Learn — Azure Machine Learning",
+          "url": "https://learn.microsoft.com/en-us/azure/machine-learning/component-reference-v2/text-classification?view=azureml-api-2",
+          "summary": "Descrive modelli di classificazione del testo addestrati su esempi etichettati per assegnare categorie ai documenti. Supporta il principio della classificazione linguistica, non garantisce l'accuratezza di ogni singola risposta."
+        }
+      ]
+    },
+    {
+      "time": "03:55",
+      "claim": "Per consultare lo storico ordini o avviare azioni reali, un modello deve essere integrato con strumenti o funzioni che accedono ai sistemi esterni.",
+      "sources": [
+        {
+          "title": "Function calling",
+          "author": "OpenAI — API Documentation",
+          "url": "https://developers.openai.com/api/docs/guides/function-calling",
+          "summary": "Il function calling permette al modello di richiedere operazioni esterne, come recuperare dati o proporre rimborsi. È l'applicazione a eseguire la funzione autorizzata, non il modello a modificare da solo il gestionale."
+        },
+        {
+          "title": "How tool use works",
+          "author": "Anthropic — Claude Platform Docs",
+          "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works",
+          "summary": "Spiega il ciclo in cui il modello propone una chiamata a uno strumento e il sistema esterno esegue e restituisce il risultato."
+        }
+      ]
+    },
+    {
+      "time": "04:30",
+      "claim": "Il grado di autonomia di un sistema AI dipende dalla configurazione: può suggerire, richiedere una decisione umana oppure agire secondo autorizzazioni definite.",
+      "sources": [
+        {
+          "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0), Appendix C: AI Risk Management and Human-AI Interaction",
+          "author": "National Institute of Standards and Technology (NIST), 2023",
+          "url": "https://doi.org/10.6028/NIST.AI.100-1",
+          "summary": "Distingue ruoli e responsabilità umane nelle decisioni, dall'impiego di AI come supporto a sistemi con maggiore autonomia. La supervisione necessaria dipende dal contesto e dal rischio."
+        }
+      ]
+    },
+    {
+      "time": "05:15",
+      "claim": "Se all'AI vengono affidate operazioni che hanno conseguenze, occorre progettare limiti e approvazioni per le azioni più sensibili.",
+      "sources": [
+        {
+          "title": "Computer use tool — Security considerations",
+          "author": "Anthropic — Claude Platform Docs",
+          "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+          "summary": "La documentazione raccomanda, fra le precauzioni, di chiedere conferma umana per decisioni con conseguenze reali e transazioni finanziarie e di limitare i permessi."
+        },
+        {
+          "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0), Appendix C",
+          "author": "National Institute of Standards and Technology (NIST), 2023",
+          "url": "https://doi.org/10.6028/NIST.AI.100-1",
+          "summary": "Richiede di definire con chiarezza responsabilità, supervisione e ruoli umani nella gestione di sistemi AI con diversi livelli di autonomia."
+        }
+      ]
+    },
+    {
+      "time": "06:00",
+      "claim": "Per un'operazione semplice e sempre uguale, come spostare automaticamente un file, una regola o uno script può bastare senza ricorrere a un modello linguistico.",
+      "note": "La scelta fra strumenti è un criterio progettuale argomentato nel video, non una classifica universale di costi.",
+      "sources": [
+        {
+          "title": "What is robotic process automation (RPA)?",
+          "author": "IBM",
+          "url": "https://www.ibm.com/think/topics/rpa",
+          "summary": "Mostra come molte attività amministrative ripetitive, incluso lo spostamento di file, possano essere automatizzate mediante procedure software."
+        }
+      ]
+    },
+    {
+      "time": "06:35",
+      "claim": "Errori generati dall'AI possono diventare più gravi quando il sistema è collegato a strumenti che compiono azioni con effetti sul mondo reale.",
+      "sources": [
+        {
+          "title": "Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile (NIST AI 600-1), §2.2",
+          "author": "National Institute of Standards and Technology (NIST), 2024",
+          "url": "https://doi.org/10.6028/NIST.AI.600-1",
+          "summary": "Il documento mette in guardia dalle informazioni non veritiere generate dai modelli, specialmente quando sono coinvolte decisioni con conseguenze importanti."
+        },
+        {
+          "title": "Computer use tool — Security considerations",
+          "author": "Anthropic — Claude Platform Docs",
+          "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+          "summary": "Le linee guida raccomandano salvaguardie e intervento umano per operazioni significative o transazioni sensibili."
+        }
+      ]
+    }
+  ],
+  "corrections": []
+}
