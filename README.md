@@ -20,7 +20,7 @@ npm run build
 
 I video vivono in `src/data/videos/*.json`. Ogni file genera automaticamente una SourcePage in `/fonti/<slug>/`.
 
-Le descrizioni YouTube possono quindi puntare direttamente alla pagina del relativo video, per esempio `/fonti/demo-sourcepage/`.
+Le descrizioni YouTube possono quindi puntare direttamente alla pagina del relativo video, per esempio `/fonti/vocabolario-ai-automazione/`.
 
 Le SourcePage devono contenere **solo le fonti realmente usate nel video**, non tutto ciò che è stato consultato durante la ricerca.
 
