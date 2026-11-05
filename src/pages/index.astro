@@ -54,7 +54,7 @@ const videos = getAllVideos();
         <p class="label">Archivio verificabile</p>
         <h2>Contenuti recenti</h2>
         <div class="video-grid">
-          {videos.slice(0,6).map((video) => {
+          {videos.map((video) => {
             const category = CATEGORIES.find((c) => c.id === video.category)!;
             return <article class="video-card">
               <small>{category.label}</small>
