@@ -8,7 +8,7 @@ export type VideoRecord = { title: string; slug: string; category: CategoryId; y
 export const NO_EXTERNAL_SOURCES_MESSAGE = 'Per questo video non sono state utilizzate fonti esterne.';
 
 export const CATEGORIES = [
-  { id: 'filosofia', label: 'Filosofia', prompt: 'Che cosa significa essere intelligenti?' },
+  { id: 'filosofia', label: 'Filosofia', prompt: 'Che cosa significa?' },
   { id: 'design', label: 'Design', prompt: 'Come l’interfaccia cambia il modo in cui percepiamo l’AI?' },
   { id: 'economia', label: 'Economia', prompt: 'Chi paga, chi guadagna, quanto costa?' },
   { id: 'ingegneria', label: 'Ingegneria informatica', prompt: 'Come funziona davvero?' }
