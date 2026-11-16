@@ -1,0 +1,85 @@
+{
+  "title": "Non esiste solo l'AI generativa",
+  "slug": "non-esiste-solo-ai-generativa",
+  "category": "ingegneria",
+  "description": "Fonti del video BrainFrame di Luca sulla Game AI e su GTA 6. Strauss Zelnick ha escluso l'uso di AI generativa per costruire GTA 6, mentre il reportage di Bloomberg descrive sistemi complessi di AI tradizionale per le interazioni tra Jason e Lucia. Gli esempi dell'appuntamento, della rapina e dei comportamenti «aspettare, seguire, andarsene» servono a spiegare il principio, non rappresentano il codice effettivo di Rockstar. I minutaggi saranno aggiunti dopo la verifica del montaggio definitivo.",
+  "claims": [
+    {
+      "claim": "Il CEO di Take-Two, Strauss Zelnick, ha dichiarato che l'AI generativa non ha avuto alcun ruolo nella realizzazione di GTA 6 e che Rockstar ha costruito il mondo di gioco manualmente, elemento per elemento.",
+      "sources": [
+        {
+          "title": "Strauss Zelnick: “Generative AI has zero part in what Rockstar Games is building” with GTA 6",
+          "author": "Jon Hicks — GamesIndustry.biz, 3 febbraio 2026",
+          "url": "https://www.gamesindustry.biz/strauss-zelnick-generative-ai-has-zero-part-in-what-rockstar-games-is-building-with-gta-6",
+          "summary": "Intervista con la dichiarazione di Zelnick: l'esclusione riguarda specificamente l'AI generativa, non ogni forma di AI. Il CEO descrive la costruzione artigianale di strade, edifici e quartieri."
+        }
+      ]
+    },
+    {
+      "claim": "Rockstar ha progettato GTA 6 affinché Jason e Lucia possano interagire e trascorrere tempo insieme anche fuori dalle missioni. Secondo il reportage, realizzare queste interazioni ha richiesto sistemi complessi di intelligenza artificiale tradizionale e anni di lavoro.",
+      "sources": [
+        {
+          "title": "The Making of Grand Theft Auto VI",
+          "author": "Jason Schreier — Bloomberg Businessweek, 14 ottobre 2026",
+          "url": "https://www.bloomberg.com/features/2026-grand-theft-auto-6-making-of/",
+          "summary": "Reportage basato su interviste ai responsabili dello sviluppo. Descrive esplicitamente la necessità di sistemi complessi di AI tradizionale per far agire i due protagonisti insieme nel mondo aperto, citando passeggiate, palestra e rapine."
+        },
+        {
+          "title": "GTA 6: The Big Interview",
+          "author": "Rachel Weber — IGN, 7 ottobre 2026",
+          "url": "https://www.ign.com/articles/gta-6-the-big-interview",
+          "summary": "Intervista a Rob Nelson durante una dimostrazione di gioco. Documenta la progettazione delle interazioni fra Jason e Lucia, la reattività del mondo e le scelte lasciate al giocatore."
+        }
+      ]
+    },
+    {
+      "claim": "Nella Game AI si possono progettare personaggi che selezionano azioni diverse sulla base dello stato del gioco e degli eventi, senza usare un modello generativo come ChatGPT.",
+      "note": "L'esempio di Lucia che aspetta, passeggia o se ne va è una semplificazione esplicativa. La fonte tecnica illustra una famiglia di soluzioni possibili, non dimostra che Rockstar utilizzi specificamente i Behavior Tree di Unreal Engine.",
+      "sources": [
+        {
+          "title": "Behavior Tree Overview",
+          "author": "Epic Games — Unreal Engine Documentation",
+          "url": "https://dev.epicgames.com/documentation/unreal-engine/behavior-tree-in-unreal-engine---overview",
+          "summary": "Documentazione ufficiale che spiega come un personaggio artificiale possa usare informazioni sul contesto, condizioni e azioni predefinite per scegliere fra comportamenti differenti, ad esempio pattugliare o inseguire il giocatore."
+        }
+      ]
+    },
+    {
+      "claim": "Un sistema di AI comportamentale può dover avviare, mantenere o interrompere un'azione quando cambiano le condizioni, anche durante il gioco.",
+      "note": "La sequenza di Jason che rapina un supermercato mentre Lucia lo cerca, cambia direzione e deve raggiungerlo è un esempio inventato per spiegare la difficoltà del problema: non è la descrizione verificata dell'algoritmo di GTA 6.",
+      "sources": [
+        {
+          "title": "Behavior Tree Overview — Event-Driven Behavior Trees / Observer Aborts",
+          "author": "Epic Games — Unreal Engine Documentation",
+          "url": "https://dev.epicgames.com/documentation/unreal-engine/behavior-tree-in-unreal-engine---overview",
+          "summary": "Spiega come eventi e cambiamenti nelle condizioni possano far passare un personaggio da un comportamento a un altro, interrompendo attività che non sono più appropriate."
+        },
+        {
+          "title": "The Making of Grand Theft Auto VI",
+          "author": "Jason Schreier — Bloomberg Businessweek, 14 ottobre 2026",
+          "url": "https://www.bloomberg.com/features/2026-grand-theft-auto-6-making-of/",
+          "summary": "Conferma la complessità delle interazioni condivise tra i protagonisti, senza divulgare l'implementazione tecnica precisa usata da Rockstar."
+        }
+      ]
+    },
+    {
+      "claim": "Dire che GTA 6 non usa AI generativa non significa che il gioco non impieghi sistemi di AI per rendere i personaggi e il mondo più reattivi. Progettare un mondo a mano e gestirne le interazioni tramite AI sono due attività compatibili.",
+      "note": "La conclusione «la domanda non è se usi l'AI, ma come la usi» è l'interpretazione editoriale di BrainFrame, non una citazione di Rockstar.",
+      "sources": [
+        {
+          "title": "Strauss Zelnick: “Generative AI has zero part in what Rockstar Games is building” with GTA 6",
+          "author": "Jon Hicks — GamesIndustry.biz, 3 febbraio 2026",
+          "url": "https://www.gamesindustry.biz/strauss-zelnick-generative-ai-has-zero-part-in-what-rockstar-games-is-building-with-gta-6",
+          "summary": "Distingue il mondo costruito a mano dall'uso dell'intelligenza artificiale in senso più ampio."
+        },
+        {
+          "title": "The Making of Grand Theft Auto VI",
+          "author": "Jason Schreier — Bloomberg Businessweek, 14 ottobre 2026",
+          "url": "https://www.bloomberg.com/features/2026-grand-theft-auto-6-making-of/",
+          "summary": "Documenta le interazioni tra i protagonisti supportate da sistemi complessi di AI non generativa."
+        }
+      ]
+    }
+  ],
+  "corrections": []
+}
