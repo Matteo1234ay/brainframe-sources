@@ -3,7 +3,7 @@ export type CategoryId = (typeof CATEGORY_IDS)[number];
 export type Source = { title: string; author?: string; url: string; summary?: string };
 export type Claim = { time?: string; claim: string; note?: string; sources: Source[] };
 export type Correction = { date: string; text: string; sourceUrl?: string };
-export type VideoRecord = { title: string; slug: string; category: CategoryId; youtube?: string; published?: string; description?: string; claims: Claim[]; corrections?: Correction[] };
+export type VideoRecord = { title: string; slug: string; category: CategoryId; youtube?: string; published?: string; featured?: boolean; description?: string; claims: Claim[]; corrections?: Correction[] };
 
 export const NO_EXTERNAL_SOURCES_MESSAGE = 'Per questo video non sono state utilizzate fonti esterne.';
 
@@ -29,6 +29,7 @@ function validateVideo(raw: any): VideoRecord {
   if (!CATEGORY_IDS.includes(raw.category)) throw new Error('category is invalid');
   if (raw.youtube !== undefined) assertUrl(raw.youtube, 'youtube');
   if (raw.published !== undefined && (typeof raw.published !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(raw.published))) throw new Error('published must be YYYY-MM-DD');
+  if (raw.featured !== undefined && typeof raw.featured !== 'boolean') throw new Error('featured must be a boolean');
   if (!Array.isArray(raw.claims)) throw new Error('claims must be an array');
   for (const claim of raw.claims) {
     if (claim.time !== undefined && (typeof claim.time !== 'string' || !TIMESTAMP.test(claim.time))) throw new Error(`invalid timestamp: ${claim.time}`);
@@ -49,5 +50,15 @@ export function parseVideos(records: unknown[]) {
 }
 const modules = import.meta.glob('../data/videos/*.json', { eager: true, import: 'default' });
 const VIDEOS = parseVideos(Object.values(modules));
-export function getAllVideos() { return [...VIDEOS].sort((a,b) => (b.published ?? '').localeCompare(a.published ?? '')); }
+export function getAllVideos() {
+  // Le schede dimostrative non devono comparire nell'archivio pubblico.
+  return VIDEOS
+    .filter((video) => !/^demo(?:-|$)/i.test(video.slug))
+    .sort((a, b) =>
+      Number(Boolean(b.featured)) - Number(Boolean(a.featured))
+      || (b.published ?? '').localeCompare(a.published ?? '')
+      || Number(Boolean(b.youtube)) - Number(Boolean(a.youtube))
+      || a.title.localeCompare(b.title, 'it')
+    );
+}
 export function getVideosByCategory(category: CategoryId) { return getAllVideos().filter(v => v.category === category); }
