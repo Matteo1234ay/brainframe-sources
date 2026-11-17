@@ -15,7 +15,11 @@ test('home communicates the four Brainframe perspectives', async ({ page }) => {
   }
   await expect(page.locator('[data-hero-path]')).toHaveCount(4);
   await expect(page.locator('[data-hero-lens]')).toHaveCount(4);
-  await expect(page.getByRole('link', { name: /Vedi le fonti/i }).first()).toBeVisible();
+  await expect(page.getByRole('link', { name: /Vedi le fonti/i })).toHaveCount(8);
+  await expect(page.getByText('Tutte le 8 schede delle fonti disponibili.')).toBeVisible();
+  await expect(page.getByText('Non esiste solo l\\'AI generativa', { exact: true })).toBeVisible();
+  await expect(page.getByText('DEMO — Come leggiamo una fonte')).toHaveCount(0);
+  await expect(page.getByText('Che cosa significa essere intelligenti?')).toHaveCount(0);
 });
 
 test('hero copy stays readable over the animated lines', async ({ page }) => {
