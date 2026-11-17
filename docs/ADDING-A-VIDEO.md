@@ -1,6 +1,6 @@
 # Aggiungere un video Brainframe
 
-1. Duplica `src/data/videos/demo-sourcepage.json`.
+1. Duplica una scheda esistente da `src/data/videos/` (ad esempio `ai-intelligente.json`) e sostituisci tutti i dati del video.
 2. Rinomina il file con lo slug del video, per esempio `costo-ai.json`.
 3. Compila `title`, `slug`, `category`, `youtube`, `published`, `description`.
 4. Per ogni punto realmente sostenuto da una fonte nel video, aggiungi un elemento in `claims` con claim e una o più fonti. Aggiungi il timestamp `time` quando verificato nel montaggio.
