@@ -16,7 +16,7 @@ const category = CATEGORIES.find((item) => item.id === video.category)!;
       <p class="source-category">{category.label}</p>
       <h1>{video.title}</h1>
       <div class="source-meta">
-        {video.published ? <time datetime={video.published}>{video.published}</time> : <span>Video in preparazione</span>}
+        {video.published ? <time datetime={video.published}>{video.published}</time> : <span>{video.youtube ? 'Video pubblicato' : 'Video in preparazione'}</span>}
         {video.youtube && <a href={video.youtube} rel="external">Guarda il video su YouTube ↗</a>}
       </div>
       {video.description && <p class="source-description">{video.description}</p>}
