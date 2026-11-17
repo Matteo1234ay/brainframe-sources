@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 const prompts = [
-  'Che cosa significa essere intelligenti?',
+  'Che cosa significa?',
   'Come l’interfaccia cambia il modo in cui percepiamo l’AI?',
   'Chi paga, chi guadagna, quanto costa?',
   'Come funziona davvero?'
@@ -40,12 +40,12 @@ test('scrolling perspective section shows only white questions', async ({ page }
   }
 });
 
-test('demo SourcePage exposes the used source and its summary and hides empty corrections', async ({ page }) => {
-  await page.goto('/fonti/demo-sourcepage/');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('DEMO — Come leggiamo una fonte');
-  await expect(page.getByText('00:42')).toBeVisible();
-  await expect(page.getByRole('link', { name: /Attention Is All You Need/ })).toHaveAttribute('href', /arxiv\.org/);
-  await expect(page.getByText('Paper NeurIPS 2017 che introduce l’architettura Transformer e usa l’attenzione come componente centrale.')).toBeVisible();
+test('GTA 6 source page displays sources and the linked published video', async ({ page }) => {
+  await page.goto('/fonti/non-esiste-solo-ai-generativa/');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText("Non esiste solo l'AI generativa");
+  await expect(page.getByText('Video pubblicato')).toBeVisible();
+  await expect(page.getByRole('link', { name: /Guarda il video su YouTube/ })).toHaveAttribute('href', 'https://youtu.be/RNPwn5kSP9I');
+  await expect(page.getByRole('link', { name: /The Making of Grand Theft Auto VI/ }).first()).toHaveAttribute('href', 'https://www.bloomberg.com/features/2026-grand-theft-auto-6-making-of/');
   await expect(page.getByRole('heading', { name: /Correzioni/i })).toHaveCount(0);
 });
 
@@ -59,19 +59,19 @@ test('economy source page links to the IEA report without a fake YouTube link', 
 
 test('search finds content by source author', async ({ page }) => {
   await page.goto('/cerca/');
-  await page.getByRole('searchbox').fill('Vaswani');
-  await expect(page.getByRole('link', { name: /DEMO — Come leggiamo una fonte/ })).toBeVisible();
+  await page.getByRole('searchbox').fill('Schreier');
+  await expect(page.getByRole('link', { name: /Non esiste solo l'AI generativa/ })).toBeVisible();
 });
 
 test('reduced motion keeps the narrative readable', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   await expect(page.locator('html')).toHaveAttribute('data-reduced-motion', 'true');
-  await expect(page.getByRole('heading', { level: 3, name: 'Che cosa significa essere intelligenti?' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 3, name: 'Che cosa significa?' })).toBeVisible();
 });
 
 test('pages do not overflow horizontally', async ({ page }) => {
-  await page.goto('/fonti/demo-sourcepage/');
+  await page.goto('/fonti/non-esiste-solo-ai-generativa/');
   const widths = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, client: document.documentElement.clientWidth }));
   expect(widths.scroll).toBeLessThanOrEqual(widths.client + 1);
 });
